@@ -14,9 +14,6 @@ from telegramCustomFunc import telegramSendMessage
 import platform
 
 
-AWS_ACCESS_KEY_ID = "AKIA5CMUDBP7VTOBN4EG"
-AWS_SECRET_ACCESS_KEY = "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"
-AWS_DEFAULT_REGION = "ap-northeast-2"
 campName = ['울주해양레포츠센터', '대저캠핑장', '삼락캠핑장']
 jinhaDb = []
 jinhaDate = []
