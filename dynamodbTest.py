@@ -81,25 +81,44 @@ if __name__ == '__main__':
         print('samrakChatId: ', samrakChatId)
 
 
-# # 사용자 컴퓨터 OS 확인 후 설정값 반환
-# systemOS = platform.system()
-# pathChromedriver = ''
+# 사용자 컴퓨터 OS 확인 후 설정값 반환
+systemOS = platform.system()
+pathChromedriver = ''
 
-# if systemOS == "Darwin":
-#     pathChromedriver = '/Users/WMHY/Downloads/chromedriver'
-# elif systemOS == "Windows":
-#     pathChromedriver = ''
-# elif systemOS == "Linux":
-#     pathChromedriver = '/home/ubuntu/chromedriver'
+if systemOS == "Darwin":
+    pathChromedriver = '/Users/WMHY/Downloads/chromedriver'
+elif systemOS == "Windows":
+    pathChromedriver = ''
+elif systemOS == "Linux":
+    pathChromedriver = '/home/ubuntu/chromedriver'
 
-# webdriver_options = webdriver.ChromeOptions()
+webdriver_options = webdriver.ChromeOptions()
 # webdriver_options .add_argument('headless')
 
-# driver = webdriver.Chrome(pathChromedriver, options=webdriver_options)
+driver = webdriver.Chrome(pathChromedriver, options=webdriver_options)
 
 # # 오늘 날짜 확인
-# todayDay = datetime.datetime.now().day
+today = datetime.date.today()
+print(today)
 
+# # 진하캠핑장 검색
+jinha.connectWebsite(driver)
+index = 0
+jinhaThisMonth = 0
+jinhaModDate = []
+for date in jinhaDate:
+    startDateYear = date[0:2]
+    startDateMonth = date[2:4]
+    startDateDay = date[4:]
+    jinhaModDate.append('20'+startDateYear+'-'+startDateMonth+'-'+startDateDay)
+
+# term = jinhaTerm[index]
+# chatId = jinhaChatId[index]
+# index = index + 1
+# if int(startDateMonth) == today.month:
+#     print('ok')
+# else:
+#     print('no')
 # # 검색할 캠핑장 선택
 # selectedCampsite = []
 # sendMessageCount = 0
