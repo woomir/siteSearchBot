@@ -13,6 +13,9 @@ import datetime
 from telegramCustomFunc import telegramSendMessage
 import platform
 
+# 오늘 날짜 확인
+today = datetime.date.today()
+
 campName = ['울주해양레포츠센터', '대저캠핑장', '삼락캠핑장']
 jinhaDb = []
 jinhaDate = []
@@ -93,28 +96,32 @@ elif systemOS == "Linux":
     pathChromedriver = '/home/ubuntu/chromedriver'
 
 webdriver_options = webdriver.ChromeOptions()
-# webdriver_options .add_argument('headless')
+webdriver_options .add_argument('headless')
 
 driver = webdriver.Chrome(pathChromedriver, options=webdriver_options)
 
-# # 오늘 날짜 확인
-today = datetime.date.today()
-print(today)
-
-# # 진하캠핑장 검색
-jinha.connectWebsite(driver)
+# 진하캠핑장 검색
 index = 0
 jinhaThisMonth = 0
 jinhaModDate = []
+
 for date in jinhaDate:
     startDateYear = date[0:2]
     startDateMonth = date[2:4]
     startDateDay = date[4:]
-    jinhaModDate.append('20'+startDateYear+'-'+startDateMonth+'-'+startDateDay)
+    jinhaModDate = '20'+startDateYear+'-'+startDateMonth+'-'+startDateDay
+    jinhaDateType = datetime.date(
+        int('20'+startDateYear), int(startDateMonth), int(startDateDay))
+    if (today <= jinhaDateType):
+        jinha.connectWebsite(driver, jinhaModDate)
+        term = jinhaTerm[index]
+        chatId = jinhaChatId[index]
+        jinha.thisMonthSearch(driver, campName[0], chatId, jinhaModDate, term)
+    index += 1
+    print(jinhaModDate)
+    print(index)
 
-# term = jinhaTerm[index]
-# chatId = jinhaChatId[index]
-# index = index + 1
+
 # if int(startDateMonth) == today.month:
 #     print('ok')
 # else:

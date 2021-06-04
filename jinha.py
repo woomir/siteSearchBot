@@ -14,37 +14,11 @@ sendMessageCount = 0
 today = datetime.date.today()
 
 
-def connectWebsite(driver):
-    url = 'https://xn--om2bi2o9qdy7a48exzk3vf68fzzd.kr/reserve/month?day=' + \
-        str(today) + '&cate_no=a'
+def connectWebsite(driver, date):
+    url = 'https://xn--om2bi2o9qdy7a48exzk3vf68fzzd.kr/reserve/month?day=' + date + '&cate_no=a'
     driver.get(url)
     time.sleep(0.5)
     html = driver.page_source
-    # if '/login?backURL=%2F' in html:
-    #     # 로그인 화면으로 이동
-    #     xpath = "//a[@href='/login?backURL=%2F']"
-    #     driver.find_element_by_xpath(xpath).click()
-    #     time.sleep(0.1)
-    #     # 아이디 입력
-    #     xpath = "//input[@id='m_id']"
-    #     driver.find_element_by_xpath(xpath).send_keys('woomir@gmail.com')
-    #     time.sleep(0.1)
-    #     # 비번 입력
-    #     xpath = "//input[@id='password']"
-    #     driver.find_element_by_xpath(xpath).send_keys('$52Telecast')
-    #     time.sleep(0.1)
-    #     # 로그인 버튼 클릭
-    #     xpath = "//button[@id='login_submit']"
-    #     driver.find_element_by_xpath(xpath).click()
-    #     time.sleep(0.1)
-
-    # # 예약사이트 접속
-    # xpath = "//a[@href='/room/camping.php']"
-    # driver.find_element_by_xpath(xpath).click()
-    # time.sleep(0.2)
-    # xpath = "//*[@id='wrap']/div[3]/div/ul/li[4]/a"
-    # driver.find_element_by_xpath(xpath).click()
-    # time.sleep(0.1)
 
 
 def weekendSearch(driver, todayDay):
@@ -92,19 +66,15 @@ def thisMonthSearch(driver, campName, chatId, selectDate, term):
         html = driver.page_source
         global jinhaSoup
         jinhaSoup = BeautifulSoup(html, 'html.parser')
-        areaName = jinhaSoup.select_one("button.btn_active").get_text()
         siteFind = jinhaSoup.select('a.num')
-        index = 0
-        for selectDay in selectDate:
-            activeSiteCount = 0
-            for active in siteFind:
-                if selectDay in active['data-val']:
-                    if '예약가능' in active.select_one('img')['alt']:
-                        activeSiteCount += 1
-            if activeSiteCount > 0:
-                telegramSendMessage(chatId[index], campName,
-                                    selectDay, area)
-            index = index + 1
+        activeSiteCount = 0
+        for active in siteFind:
+            if selectDate in active['data-val']:
+                if '예약가능' in active.select_one('img')['alt']:
+                    activeSiteCount += 1
+        if activeSiteCount > 0:
+            telegramSendMessage(str(chatId), campName,
+                                selectDate, area)
 
 
 # 사용자 컴퓨터 OS 확인 후 설정값 반환
