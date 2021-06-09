@@ -36,20 +36,20 @@ while roofCheck < 1:
     samrakDb = []
     samrakDate = []
     samrakTerm = []
-     samrakChatId = []
+    samrakChatId = []
 
-      session = boto3.session.Session(profile_name='siteSearch')
+    session = boto3.session.Session(profile_name='siteSearch')
 
-       def dbScan(dynamodb=None):
-            dynamodb = session.resource('dynamodb')  # bucket 목록
-            table = dynamodb.Table('siteSearchBot_campInfo')
+    def dbScan(dynamodb=None):
+        dynamodb = session.resource('dynamodb')  # bucket 목록
+        table = dynamodb.Table('siteSearchBot_campInfo')
 
-            try:
-                response = table.scan()
-            except ClientError as e:
-                print(e.response['Error']['Message'])
-            else:
-                return response['Items']
+        try:
+            response = table.scan()
+        except ClientError as e:
+            print(e.response['Error']['Message'])
+        else:
+            return response['Items']
 
         if __name__ == '__main__':
             campDb = dbScan()
