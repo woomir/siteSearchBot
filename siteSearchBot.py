@@ -14,8 +14,9 @@ import datetime
 from telegramCustomFunc import telegramSendMessage
 import platform
 
-roofCheck = 0
+
 try:
+    roofCheck = 0
     while roofCheck < 1:
         # 오늘 날짜 확인
         today = datetime.date.today()
