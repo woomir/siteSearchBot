@@ -15,32 +15,32 @@ from telegramCustomFunc import telegramSendMessage
 import platform
 
 
-try:
-    roofCheck = 0
-    while roofCheck < 1:
-        # 오늘 날짜 확인
-        today = datetime.date.today()
-        sleepRandomTime = random.randrange(10, 20)
+# try:
+roofCheck = 0
+while roofCheck < 1:
+    # 오늘 날짜 확인
+    today = datetime.date.today()
+    sleepRandomTime = random.randrange(10, 20)
 
-        campName = ['울주해양레포츠센터', '삼락캠핑장', '화랑마을(육부촌)']
-        jinhaDb = []
-        jinhaDate = []
-        jinhaTerm = []
-        jinhaChatId = []
+    campName = ['울주해양레포츠센터', '삼락캠핑장', '화랑마을(육부촌)']
+    jinhaDb = []
+    jinhaDate = []
+    jinhaTerm = []
+    jinhaChatId = []
 
-        daejeoDb = []
-        daejeoDate = []
-        daejeoTerm = []
-        daejeoChatId = []
+    daejeoDb = []
+    daejeoDate = []
+    daejeoTerm = []
+    daejeoChatId = []
 
-        samrakDb = []
-        samrakDate = []
-        samrakTerm = []
-        samrakChatId = []
+    samrakDb = []
+    samrakDate = []
+    samrakTerm = []
+     samrakChatId = []
 
-        session = boto3.session.Session(profile_name='siteSearch')
+      session = boto3.session.Session(profile_name='siteSearch')
 
-        def dbScan(dynamodb=None):
+       def dbScan(dynamodb=None):
             dynamodb = session.resource('dynamodb')  # bucket 목록
             table = dynamodb.Table('siteSearchBot_campInfo')
 
@@ -131,7 +131,7 @@ try:
         # 랜덤으로 대기 후 실행
         time.sleep(sleepRandomTime)
 
-except:
-    bot_token = "1730964681:AAFQ96aa9ARQajzKCpTZ3CfeiN_AmlheSMg"
-    bot = telegram.Bot(token=bot_token)
-    bot.sendMessage(chat_id='1003456250', text='프로그램 정지')
+# except:
+#     bot_token = "1730964681:AAFQ96aa9ARQajzKCpTZ3CfeiN_AmlheSMg"
+#     bot = telegram.Bot(token=bot_token)
+#     bot.sendMessage(chat_id='1003456250', text='프로그램 정지')
