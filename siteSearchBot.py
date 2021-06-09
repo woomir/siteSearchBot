@@ -14,10 +14,12 @@ import datetime
 from telegramCustomFunc import telegramSendMessage
 import platform
 
-while true:
+roofCheck = 0
+
+while roofCheck < 1:
     # 오늘 날짜 확인
     today = datetime.date.today()
-    sleepRandomTime = random.randrange(20, 40)
+    sleepRandomTime = random.randrange(10, 20)
 
     campName = ['울주해양레포츠센터', '삼락캠핑장', '화랑마을(육부촌)']
     jinhaDb = []
