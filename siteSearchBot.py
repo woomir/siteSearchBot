@@ -4,6 +4,7 @@ from pprint import pprint
 from boto3.dynamodb.conditions import Key
 import jinha
 import samrak
+import hwarang
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -27,10 +28,10 @@ try:
         jinhaTerm = []
         jinhaChatId = []
 
-        daejeoDb = []
-        daejeoDate = []
-        daejeoTerm = []
-        daejeoChatId = []
+        hwarangDb = []
+        hwarangDate = []
+        hwarangTerm = []
+        hwarangChatId = []
 
         samrakDb = []
         samrakDate = []
@@ -127,9 +128,26 @@ try:
                     driver, campName[1], chatId, samrakModDate, term)
             index += 1
 
+        # 화랑마을(육부촌) 검색
+        index = 0
+        for date in hwarangDate:
+            startDateYear = date[0:2]
+            startDateMonth = date[2:4]
+            startDateDay = date[4:]
+            hwarangModDate = '20'+startDateYear+'-'+startDateMonth+'-'+startDateDay
+            hwarangDateType = datetime.date(
+                int('20'+startDateYear), int(startDateMonth), int(startDateDay))
+            if (today <= hwarangDateType):
+                term = hwarangTerm[index]
+                chatId = hwarangChatId[index]
+                hwarang.connectWebsite(
+                    driver, startDateYear, startDateMonth, startDateDay)
+                hwarang.thisMonthSearch(
+                    driver, campName[2], chatId, hwarangModDate, term)
+            index += 1
+
         # 랜덤으로 대기 후 실행
         time.sleep(sleepRandomTime)
 
 except:
     teleFunc.telegramSimpleMessage('1003456250', '프로그램 정지')
-    # bot.sendMessage(chat_id='1003456250', text='프로그램 정지')
