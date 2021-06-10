@@ -11,7 +11,7 @@ import time
 import telegram
 import random
 import datetime
-from telegramCustomFunc import telegramSendMessage
+import telegramCustomFunc as teleFunc
 import platform
 
 try:
@@ -131,6 +131,5 @@ try:
         time.sleep(sleepRandomTime)
 
 except:
-    bot_token = "1730964681:AAFQ96aa9ARQajzKCpTZ3CfeiN_AmlheSMg"
-    bot = telegram.Bot(token=bot_token)
-    bot.sendMessage(chat_id='1003456250', text='프로그램 정지')
+    teleFunc.telegramSimpleMessage('1003456250', '프로그램 정지')
+    # bot.sendMessage(chat_id='1003456250', text='프로그램 정지')
