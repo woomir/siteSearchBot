@@ -142,7 +142,7 @@ try:
                 chatId = hwarangChatId[index]
                 hwarang.connectWebsite(
                     driver, startDateYear, startDateMonth, startDateDay)
-                hwarang.thisMonthSearch(
+                hwarang.siteSearch(
                     driver, campName[2], chatId, hwarangModDate, term)
             index += 1
 
