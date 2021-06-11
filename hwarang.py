@@ -10,7 +10,7 @@ import platform
 
 
 def connectWebsite(driver, year, month, day):
-    url = 'https://www.gyeongju.go.kr/hwarang/page.do?step=list&mnu_uid=1996&tabNum=1&csi_uid=12&initYear=' + \
+    url = 'https://www.gyeongju.go.kr/hwarang/page.do?step=list&mnu_uid=1996&tabNum=1&csi_uid=12&initYear=20' + \
         year + '&initMonth=' + month + '&initDay=' + day + '&daynum=' + day
     driver.get(url)
     time.sleep(0.5)

@@ -5,7 +5,7 @@ with open("./token.txt") as f:
     token = lines[0].strip()
 
 
-def telegramSendMessage(chatId: int, campName: str, date: str, areaName="none", term='none'):
+def telegramSendMessage(chatId: str, campName: str, date: str, areaName="none", term='none'):
     bot = telegram.Bot(token=token)
     if areaName == "none" and term == "none":
         telegramMessageText = campName + ': ' + date + ' ' + ' 예약 가능'
