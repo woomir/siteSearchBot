@@ -5,6 +5,7 @@ from boto3.dynamodb.conditions import Key
 import jinha
 import samrak
 import hwarang
+import sinbul
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
@@ -22,21 +23,22 @@ try:
         today = datetime.date.today()
         sleepRandomTime = random.randrange(10, 20)
 
-        campName = ['울주해양레포츠센터', '삼락캠핑장', '화랑마을(육부촌)']
-        jinhaDb = []
+        campName = ['울주해양레포츠센터', '삼락캠핑장', '화랑마을(육부촌)', '신불산(작천정, 등억, 달빛)']
         jinhaDate = []
         jinhaTerm = []
         jinhaChatId = []
 
-        hwarangDb = []
         hwarangDate = []
         hwarangTerm = []
         hwarangChatId = []
 
-        samrakDb = []
         samrakDate = []
         samrakTerm = []
         samrakChatId = []
+
+        sinbulDate = []
+        sinbulTerm = []
+        sinbulChatId = []
 
         session = boto3.session.Session(profile_name='siteSearch')
 
@@ -77,6 +79,13 @@ try:
                                 samrakTerm.append(date['term'])
                                 samrakChatId.append(db['chat_id'])
 
+                    elif db['campName'] == campName[3]:
+                        if 'selectedDate' in db:
+                            for date in db['selectedDate']:
+                                sinbulDate.append(date['startDate'])
+                                sinbulTerm.append(date['term'])
+                                sinbulChatId.append(db['chat_id'])
+
         # 사용자 컴퓨터 OS 확인 후 설정값 반환
         systemOS = platform.system()
         pathChromedriver = ''
@@ -89,7 +98,7 @@ try:
             pathChromedriver = '/home/ubuntu/chromedriver'
 
         webdriver_options = webdriver.ChromeOptions()
-        webdriver_options .add_argument('headless')
+        # webdriver_options .add_argument('headless')
 
         driver = webdriver.Chrome(pathChromedriver, options=webdriver_options)
 
@@ -144,6 +153,23 @@ try:
                     driver, startDateYear, startDateMonth, startDateDay)
                 hwarang.siteSearch(
                     driver, campName[2], chatId, hwarangModDate, term)
+            index += 1
+
+        # 신불산 검색
+        index = 0
+        for date in sinbulDate:
+            startDateYear = date[0:2]
+            startDateMonth = date[2:4]
+            startDateDay = date[4:]
+            sinbulModDate = '20'+startDateYear+'-'+startDateMonth+'-'+startDateDay
+            sinbulDateType = datetime.date(
+                int('20'+startDateYear), int(startDateMonth), int(startDateDay))
+            if (today <= sinbulDateType):
+                term = sinbulTerm[index]
+                chatId = sinbulChatId[index]
+                sinbul.connectWebsite(driver)
+                sinbul.siteSearch(
+                    driver, chatId, sinbulModDate)
             index += 1
 
         # 랜덤으로 대기 후 실행
