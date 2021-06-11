@@ -98,7 +98,7 @@ try:
             pathChromedriver = '/home/ubuntu/chromedriver'
 
         webdriver_options = webdriver.ChromeOptions()
-        # webdriver_options .add_argument('headless')
+        webdriver_options .add_argument('headless')
 
         driver = webdriver.Chrome(pathChromedriver, options=webdriver_options)
 
