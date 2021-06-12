@@ -12,23 +12,23 @@ import platform
 def connectWebsite(driver):
     url = 'https://camping.ulju.ulsan.kr/Pmreservation.do'
     driver.get(url)
-    time.sleep(0.5)
+    time.sleep(1)
 
 
 def siteSearch(driver, chatId, date):
     xpath = "//td[@data-date='" + date + "']"
     driver.find_element_by_xpath(xpath).click()
-    time.sleep(1)
+    time.sleep(2)
     driver.find_element_by_xpath(
         "//*[@id='divAjaxTable']/div/label").click()
-    time.sleep(1)
+    time.sleep(2)
     for i in range(1, 4):
         activeSiteInfo = []
         activeSiteDetail = []
         activeRealSite = []
         xpath = "//*[@id='divAjaxTable']/input[" + str(i) + "]"
         driver.find_element_by_xpath(xpath).click()
-        time.sleep(1)
+        time.sleep(2)
 
         html = driver.page_source
         soup = BeautifulSoup(html, 'html.parser')
