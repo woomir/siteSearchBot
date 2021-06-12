@@ -18,6 +18,23 @@ import platform
 
 try:
     roofCheck = 0
+
+    # 사용자 컴퓨터 OS 확인 후 설정값 반환
+    systemOS = platform.system()
+    pathChromedriver = ''
+
+    if systemOS == "Darwin":
+        pathChromedriver = '/Users/WMHY/Downloads/chromedriver'
+    elif systemOS == "Windows":
+        pathChromedriver = ''
+    elif systemOS == "Linux":
+        pathChromedriver = '/home/ubuntu/chromedriver'
+
+    webdriver_options = webdriver.ChromeOptions()
+    webdriver_options .add_argument('headless')
+
+    driver = webdriver.Chrome(pathChromedriver, options=webdriver_options)
+
     while roofCheck < 1:
         # 오늘 날짜 확인
         today = datetime.date.today()
@@ -85,22 +102,6 @@ try:
                                 sinbulDate.append(date['startDate'])
                                 sinbulTerm.append(date['term'])
                                 sinbulChatId.append(db['chat_id'])
-
-        # 사용자 컴퓨터 OS 확인 후 설정값 반환
-        systemOS = platform.system()
-        pathChromedriver = ''
-
-        if systemOS == "Darwin":
-            pathChromedriver = '/Users/WMHY/Downloads/chromedriver'
-        elif systemOS == "Windows":
-            pathChromedriver = ''
-        elif systemOS == "Linux":
-            pathChromedriver = '/home/ubuntu/chromedriver'
-
-        webdriver_options = webdriver.ChromeOptions()
-        webdriver_options .add_argument('headless')
-
-        driver = webdriver.Chrome(pathChromedriver, options=webdriver_options)
 
         # 진하캠핑장 검색
         index = 0
