@@ -185,4 +185,4 @@ try:
 
 except Exception as e:
     teleFunc.telegramSimpleMessage('1003456250', '프로그램 정지')
-    # logger.error('Failed: ' + str(e))
+    logger.error('Failed: ' + str(e))
