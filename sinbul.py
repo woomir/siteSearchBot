@@ -17,8 +17,6 @@ def connectWebsite(driver):
 
 def siteSearch(driver, chatId, date):
     xpath = "//td[@data-date='" + date + "']"
-    # element = driver.find_element_by_xpath(xpath)
-    # driver.execute_script("arguments[0].click();", element)
     driver.find_element_by_xpath(xpath).click()
     time.sleep(2)
     try:
