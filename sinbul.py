@@ -56,5 +56,5 @@ def siteSearch(driver, chatId, date):
                     telegramSendMessage(
                         str(chatId), campName, date, 'none', 'none')
     except Exception as e:
-        # print("예약 불가")
-        logger.error('Failed: ' + str(e))
+        print("예약 불가")
+        # logger.error('Failed: ' + str(e))
