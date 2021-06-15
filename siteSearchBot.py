@@ -31,11 +31,11 @@ try:
         pathChromedriver = '/home/ubuntu/chromedriver'
 
     webdriver_options = webdriver.ChromeOptions()
-    webdriver_options .add_argument('headless')
-    webdriver_options.add_argument('window-size=1920x1080')
+    webdriver_options .add_argument('--headless')
+    webdriver_options.add_argument('--start-maximized')
     webdriver_options.add_argument('lang=ko_KR')
     webdriver_options.add_argument(
-        f'user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.87 Safari/537.36')
+        f'user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.106 Safari/537.36')
 
     driver = webdriver.Chrome(pathChromedriver, options=webdriver_options)
 
@@ -180,5 +180,6 @@ try:
         # 랜덤으로 대기 후 실행
         time.sleep(sleepRandomTime)
 
-except:
+except Exception as e:
     teleFunc.telegramSimpleMessage('1003456250', '프로그램 정지')
+    logger.error('Failed: ' + str(e))
