@@ -31,8 +31,8 @@ try:
         pathChromedriver = '/home/ubuntu/chromedriver'
 
     webdriver_options = webdriver.ChromeOptions()
-    # webdriver_options .add_argument('--headless')
-    webdriver_options.add_argument('--start-maximized')
+    webdriver_options .add_argument('--headless')
+    # webdriver_options.add_argument('--start-maximized')
     webdriver_options.add_argument('lang=ko_KR')
     webdriver_options.add_argument(
         f'user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.106 Safari/537.36')
