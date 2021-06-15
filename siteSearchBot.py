@@ -38,8 +38,8 @@ try:
         f'user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.106 Safari/537.36')
 
     driver = webdriver.Chrome(pathChromedriver, options=webdriver_options)
-    driver.set_window_position(0, 0)
-    driver.set_window_size(1400, 900)
+    # driver.set_window_position(0, 0)
+    # driver.set_window_size(1400, 900)
 
     while roofCheck < 1:
         # 오늘 날짜 확인

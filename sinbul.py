@@ -17,12 +17,16 @@ def connectWebsite(driver):
 
 def siteSearch(driver, chatId, date):
     xpath = "//td[@data-date='" + date + "']"
-    # driver.find_element_by_xpath(xpath).click()
-    driver.find_element_by_xpath(xpath).send_keys(Keys.ENTER)
+    # element = driver.find_element_by_xpath(xpath)
+    # driver.execute_script("arguments[0].click();", element)
+    driver.find_element_by_xpath(xpath).click()
     time.sleep(2)
     try:
         driver.find_element_by_xpath(
             "//*[@id='divAjaxTable']/div/label").click()
+        # xpath = "//*[@id='divAjaxTable']/div/label"
+        # element = driver.find_element_by_xpath(xpath)
+        # driver.execute_script("arguments[0].click();", element)
         time.sleep(2)
         for i in range(1, 4):
             activeSiteInfo = []
