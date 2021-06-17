@@ -177,8 +177,8 @@ try:
                 term = sinbulTerm[index]
                 chatId = sinbulChatId[index]
                 sinbul.connectWebsite(driver)
-                sinbul.siteSearch(
-                    driver, chatId, sinbulModDate)
+                # sinbul.siteSearch(
+                # driver, chatId, sinbulModDate)
             index += 1
 
         # 랜덤으로 대기 후 실행
