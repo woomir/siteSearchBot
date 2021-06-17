@@ -10,7 +10,9 @@ import platform
 
 
 def connectWebsite(driver):
-    url = 'https://camping.ulju.ulsan.kr/Pmreservation.do'
+    # url = 'https://camping.ulju.ulsan.kr/Pmreservation.do'
+    url = 'https://camping.ulju.ulsan.kr'
+
     driver.get(url)
     time.sleep(1)
 
