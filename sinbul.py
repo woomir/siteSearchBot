@@ -15,6 +15,9 @@ def connectWebsite(driver):
 
     driver.get(url)
     time.sleep(1)
+    html = driver.page_source
+    soup = BeautifulSoup(html, 'html.parser')
+    print('첫화면: ', soup)
 
 
 def siteSearch(driver, chatId, date):
