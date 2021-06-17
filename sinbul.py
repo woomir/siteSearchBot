@@ -28,8 +28,8 @@ def siteSearch(driver, chatId, date):
         time.sleep(2)
 
         xpath = "//*[@id='main_menu']/li[4]/a"
-        # driver.find_element_by_xpath(xpath).click()
-        print('='*100, 'test : ', driver.find_element_by_xpath(xpath).get_text())
+        driver.find_element_by_xpath(xpath).click()
+        # print('='*100, 'test : ', driver.find_element_by_xpath(xpath).get_text())
 
         time.sleep(2)
 

@@ -31,7 +31,7 @@ try:
         pathChromedriver = '/home/ubuntu/chromedriver'
 
     webdriver_options = webdriver.ChromeOptions()
-    webdriver_options .add_argument('--headless')
+    # webdriver_options .add_argument('--headless')
     # webdriver_options.add_argument('--start-maximized')
     # webdriver_options .add_argument('--start-fullscreen')
     webdriver_options.add_argument('lang=ko_KR')
