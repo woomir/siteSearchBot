@@ -26,15 +26,20 @@ def siteSearch(driver, chatId, date):
         html = driver.page_source
         soup = BeautifulSoup(html, 'html.parser')
         print('soup: ', soup)
+
+        xpath = "//*[@id='main_menu']/li[4]/a"
+        driver.find_element_by_xpath(xpath).click()
+        time.sleep(2)
+
         xpath = "//td[@data-date='" + date + "']"
         driver.find_element_by_xpath(xpath).click()
         time.sleep(2)
-        # driver.find_element_by_xpath(
-        # "//*[@id='divAjaxTable']/div/label").click()
+
         xpath = "//*[@id='divAjaxTable']/div/label"
         element = driver.find_element_by_xpath(xpath)
         driver.execute_script("arguments[0].click();", element)
         time.sleep(2)
+
         for i in range(1, 4):
             activeSiteInfo = []
             activeSiteDetail = []
