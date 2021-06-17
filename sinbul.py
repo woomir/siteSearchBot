@@ -23,13 +23,14 @@ def siteSearch(driver, chatId, date):
         # xpath = "//*[@id='calendar']"
         # driver.find_element_by_xpath(xpath).click()
         # time.sleep(2)
-        html = driver.page_source
-        soup = BeautifulSoup(html, 'html.parser')
-        print('soup: ', soup)
 
         xpath = "//*[@id='main_menu']/li[4]/a"
         driver.find_element_by_xpath(xpath).click()
         time.sleep(2)
+
+        html = driver.page_source
+        soup = BeautifulSoup(html, 'html.parser')
+        print('soup: ', soup)
 
         xpath = "//td[@data-date='" + date + "']"
         driver.find_element_by_xpath(xpath).click()
