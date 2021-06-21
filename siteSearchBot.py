@@ -32,16 +32,12 @@ try:
 
     webdriver_options = webdriver.ChromeOptions()
     webdriver_options .add_argument('--headless')
-    # webdriver_options.add_argument('--start-maximized')
-    # webdriver_options .add_argument('--start-fullscreen')
     webdriver_options.add_argument('lang=ko_KR')
     webdriver_options.add_argument(
         f'user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36')
 
     driver = webdriver.Chrome(pathChromedriver, options=webdriver_options)
     driver.set_window_size(1920, 1080)
-    # driver.set_window_position(0, 0)
-    # driver.set_window_size(1400, 900)
 
     while roofCheck < 1:
         # 오늘 날짜 확인
@@ -177,8 +173,8 @@ try:
                 term = sinbulTerm[index]
                 chatId = sinbulChatId[index]
                 sinbul.connectWebsite(driver)
-                # sinbul.siteSearch(
-                #     driver, chatId, sinbulModDate)
+                sinbul.siteSearch(
+                    driver, chatId, sinbulModDate)
             index += 1
 
         # 랜덤으로 대기 후 실행

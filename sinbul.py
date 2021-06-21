@@ -7,44 +7,36 @@ import random
 import datetime
 from telegramCustomFunc import telegramSendMessage
 import platform
+from selenium.common.exceptions import WebDriverException
+from selenium.webdriver.common.alert import Alert
 
 
 def connectWebsite(driver):
-    # url = 'https://camping.ulju.ulsan.kr/Pmreservation.do'
-    url = 'https://camping.ulju.ulsan.kr'
-
+    url = 'https://camping.ulju.ulsan.kr/Pmreservation.do'
     driver.get(url)
-    time.sleep(1)
-    html = driver.page_source
-    soup = BeautifulSoup(html, 'html.parser')
-    print('첫화면: ', soup)
+    time.sleep(3)
 
 
 def siteSearch(driver, chatId, date):
+    errorCheck = 0
 
     try:
-        # xpath = "//*[@id='calendar']"
-        # driver.find_element_by_xpath(xpath).click()
-        time.sleep(2)
-
-        xpath = "//*[@id='main_menu']/li[4]/a"
-        driver.find_element_by_xpath(xpath).click()
-        # print('='*100, 'test : ', driver.find_element_by_xpath(xpath).get_text())
-
-        time.sleep(2)
-
-        html = driver.page_source
-        soup = BeautifulSoup(html, 'html.parser')
-        print('='*100, 'soup: ', soup)
-
         xpath = "//td[@data-date='" + date + "']"
         driver.find_element_by_xpath(xpath).click()
-        time.sleep(2)
+        time.sleep(0.5)
+    except:
+        return False
+    try:
+        Alert(driver).accept()
+    except:
+        errorCheck = 1
 
+    time.sleep(1)
+
+    if errorCheck == 1:
         xpath = "//*[@id='divAjaxTable']/div/label"
-        element = driver.find_element_by_xpath(xpath)
-        driver.execute_script("arguments[0].click();", element)
-        time.sleep(2)
+        driver.find_element_by_xpath(xpath).click()
+        time.sleep(1)
 
         for i in range(1, 4):
             activeSiteInfo = []
@@ -52,7 +44,7 @@ def siteSearch(driver, chatId, date):
             activeRealSite = []
             xpath = "//*[@id='divAjaxTable']/input[" + str(i) + "]"
             driver.find_element_by_xpath(xpath).click()
-            time.sleep(2)
+            time.sleep(1)
 
             html = driver.page_source
             soup = BeautifulSoup(html, 'html.parser')
@@ -78,6 +70,3 @@ def siteSearch(driver, chatId, date):
                     campName = '신불산(' + siteDetail[0] + ') ' + siteDetail[1]
                     telegramSendMessage(
                         str(chatId), campName, date, 'none', 'none')
-    except Exception as e:
-        print("예약 불가")
-        # logger.error('Failed: ' + str(e))
