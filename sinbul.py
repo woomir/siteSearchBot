@@ -14,7 +14,7 @@ from selenium.webdriver.common.alert import Alert
 def connectWebsite(driver):
     url = 'https://camping.ulju.ulsan.kr/Pmreservation.do'
     driver.get(url)
-    time.sleep(3)
+    time.sleep(1)
 
 
 def siteSearch(driver, chatId, date):
@@ -31,12 +31,12 @@ def siteSearch(driver, chatId, date):
     except:
         errorCheck = 1
 
-    time.sleep(1)
+    time.sleep(0.5)
 
     if errorCheck == 1:
         xpath = "//*[@id='divAjaxTable']/div/label"
         driver.find_element_by_xpath(xpath).click()
-        time.sleep(1)
+        time.sleep(0.5)
 
         for i in range(1, 4):
             activeSiteInfo = []
@@ -44,7 +44,7 @@ def siteSearch(driver, chatId, date):
             activeRealSite = []
             xpath = "//*[@id='divAjaxTable']/input[" + str(i) + "]"
             driver.find_element_by_xpath(xpath).click()
-            time.sleep(1)
+            time.sleep(0.5)
 
             html = driver.page_source
             soup = BeautifulSoup(html, 'html.parser')
