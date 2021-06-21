@@ -27,4 +27,4 @@ def thisMonthSearch(driver, campName, chatId, selectDate, term):
                     activeSiteCount += 1
         if activeSiteCount > 0:
             telegramSendMessage(str(chatId), campName,
-                                selectDate, area)
+                                selectDate, area.upper())

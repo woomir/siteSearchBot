@@ -77,8 +77,8 @@ try:
         if __name__ == '__main__':
             campDb = dbScan()
             if campDb:
-                print("Get campDb succeeded:")
-                print(campDb)
+                # print("Get campDb succeeded:")
+                # print(campDb)
                 # 진하캠핑장 구독 데이터 추출
                 for db in campDb:
                     if db['campName'] == campName[0]:
