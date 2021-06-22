@@ -27,10 +27,10 @@ def siteSearch(driver, chatId, date):
     errorCheck = 0
 
     try:
-        # html = driver.page_source
-        # soup = BeautifulSoup(html, 'html.parser')
-        # active = soup.find("table", {"id": "tableSite"})
-        # print(active)
+        html = driver.page_source
+        soup = BeautifulSoup(html, 'html.parser')
+        active = soup.find("table", {"id": "tableSite"})
+        print(active)
         xpath = "//td[@data-date='" + date + "']"
         # xpath = "//td[@data-date='2021-06-24']"
         driver.find_element_by_xpath(xpath).click()
