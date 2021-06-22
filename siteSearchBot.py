@@ -173,6 +173,7 @@ try:
                 term = sinbulTerm[index]
                 chatId = sinbulChatId[index]
                 sinbul.connectWebsite(driver)
+                print("신불 접속")
                 sinbul.siteSearch(
                     driver, chatId, sinbulModDate)
             index += 1
