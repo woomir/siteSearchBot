@@ -24,10 +24,12 @@ def siteSearch(driver, chatId, date):
         xpath = "//td[@data-date='" + date + "']"
         driver.find_element_by_xpath(xpath).click()
         time.sleep(0.5)
+        print("date click")
     except:
         return False
     try:
         Alert(driver).accept()
+        print("Alert click")
     except:
         errorCheck = 1
 
@@ -37,6 +39,7 @@ def siteSearch(driver, chatId, date):
         xpath = "//*[@id='divAjaxTable']/div/label"
         driver.find_element_by_xpath(xpath).click()
         time.sleep(0.5)
+        print("label click")
 
         for i in range(1, 4):
             activeSiteInfo = []
@@ -45,6 +48,7 @@ def siteSearch(driver, chatId, date):
             xpath = "//*[@id='divAjaxTable']/input[" + str(i) + "]"
             driver.find_element_by_xpath(xpath).click()
             time.sleep(0.5)
+            print("input click")
 
             html = driver.page_source
             soup = BeautifulSoup(html, 'html.parser')
