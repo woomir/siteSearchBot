@@ -12,9 +12,12 @@ from selenium.webdriver.common.alert import Alert
 
 
 def connectWebsite(driver):
-    url = 'https://camping.ulju.ulsan.kr/Pmreservation.do'
-    driver.get(url)
-    time.sleep(1)
+    try:
+        url = 'https://camping.ulju.ulsan.kr/Pmreservation.do'
+        driver.get(url)
+        time.sleep(1)
+    except:
+        print("사이트 접속불가")
 
 
 def siteSearch(driver, chatId, date):
@@ -26,51 +29,57 @@ def siteSearch(driver, chatId, date):
         time.sleep(0.5)
         print("date click")
     except:
+        print("date click failure")
         return False
     try:
         Alert(driver).accept()
         print("Alert click")
     except:
+        print("Alert click failure")
         errorCheck = 1
 
     time.sleep(0.5)
 
     if errorCheck == 1:
-        xpath = "//*[@id='divAjaxTable']/div/label"
-        driver.find_element_by_xpath(xpath).click()
-        time.sleep(0.5)
-        print("label click")
-
-        for i in range(1, 4):
-            activeSiteInfo = []
-            activeSiteDetail = []
-            activeRealSite = []
-            xpath = "//*[@id='divAjaxTable']/input[" + str(i) + "]"
+        try:
+            xpath = "//*[@id='divAjaxTable']/div/label"
             driver.find_element_by_xpath(xpath).click()
             time.sleep(0.5)
-            print("input click")
+            print("label click")
 
-            html = driver.page_source
-            soup = BeautifulSoup(html, 'html.parser')
+            for i in range(1, 4):
+                activeSiteInfo = []
+                activeSiteDetail = []
+                activeRealSite = []
+                xpath = "//*[@id='divAjaxTable']/input[" + str(i) + "]"
+                driver.find_element_by_xpath(xpath).click()
+                time.sleep(0.5)
+                print("input click")
 
-            active = soup.find("table", {"id": "tableSite"})
-            activeA = active.find_all("tr")
+                html = driver.page_source
+                soup = BeautifulSoup(html, 'html.parser')
 
-            for text in activeA:
-                aa = text.find_all("td", {"class": "lt_text"})
-                if aa != []:
-                    for bb in aa:
-                        cc = bb.get_text().strip()
-                        activeSiteDetail.append(cc)
-                    activeSiteInfo.append(activeSiteDetail)
-                    activeSiteDetail = []
+                active = soup.find("table", {"id": "tableSite"})
+                activeA = active.find_all("tr")
 
-            for site in activeSiteInfo:
-                if '하우스' not in site[1]:
-                    activeRealSite.append(site)
+                for text in activeA:
+                    aa = text.find_all("td", {"class": "lt_text"})
+                    if aa != []:
+                        for bb in aa:
+                            cc = bb.get_text().strip()
+                            activeSiteDetail.append(cc)
+                        activeSiteInfo.append(activeSiteDetail)
+                        activeSiteDetail = []
 
-            if len(activeRealSite) > 0:
-                for siteDetail in activeRealSite:
-                    campName = '신불산(' + siteDetail[0] + ') ' + siteDetail[1]
-                    telegramSendMessage(
-                        str(chatId), campName, date, 'none', 'none')
+                for site in activeSiteInfo:
+                    if '하우스' not in site[1]:
+                        activeRealSite.append(site)
+
+                if len(activeRealSite) > 0:
+                    for siteDetail in activeRealSite:
+                        campName = '신불산(' + \
+                            siteDetail[0] + ') ' + siteDetail[1]
+                        telegramSendMessage(
+                            str(chatId), campName, date, 'none', 'none')
+        except:
+            print("input click failure")
