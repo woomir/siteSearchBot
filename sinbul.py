@@ -12,25 +12,29 @@ from selenium.webdriver.common.alert import Alert
 
 
 def connectWebsite(driver):
-    try:
-        url = 'https://camping.ulju.ulsan.kr/Pmreservation.do'
-        driver.get(url)
-        time.sleep(1)
-    except:
-        print("사이트 접속불가")
+    # url = 'https://camping.ulju.ulsan.kr/Pmreservation.do'
+    url = 'https://camping.ulju.ulsan.kr'
+
+    driver.get(url)
+    time.sleep(1)
+
+    xpath = "//*[@id='main_menu']/li[4]/a"
+    driver.find_element_by_xpath(xpath).click()
+    time.sleep(1)
 
 
 def siteSearch(driver, chatId, date):
     errorCheck = 0
 
     try:
-        html = driver.page_source
-        soup = BeautifulSoup(html, 'html.parser')
-        active = soup.find("table", {"id": "tableSite"})
-        print(soup)
+        # html = driver.page_source
+        # soup = BeautifulSoup(html, 'html.parser')
+        # active = soup.find("table", {"id": "tableSite"})
+        # print(active)
         xpath = "//td[@data-date='" + date + "']"
+        # xpath = "//td[@data-date='2021-06-24']"
         driver.find_element_by_xpath(xpath).click()
-        time.sleep(0.5)
+        time.sleep(1)
         print("date click")
     except:
         print("date click failure")
@@ -42,13 +46,13 @@ def siteSearch(driver, chatId, date):
         print("Alert click failure")
         errorCheck = 1
 
-    time.sleep(0.5)
+    time.sleep(1)
 
     if errorCheck == 1:
         try:
             xpath = "//*[@id='divAjaxTable']/div/label"
             driver.find_element_by_xpath(xpath).click()
-            time.sleep(0.5)
+            time.sleep(1)
             print("label click")
 
             for i in range(1, 4):
@@ -57,7 +61,7 @@ def siteSearch(driver, chatId, date):
                 activeRealSite = []
                 xpath = "//*[@id='divAjaxTable']/input[" + str(i) + "]"
                 driver.find_element_by_xpath(xpath).click()
-                time.sleep(0.5)
+                time.sleep(1)
                 print("input click")
 
                 html = driver.page_source
