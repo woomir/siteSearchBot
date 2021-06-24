@@ -17,10 +17,12 @@ def connectWebsite(driver):
 
     driver.get(url)
     time.sleep(1)
+    driver.save_screenshot("main.png")
 
     xpath = "//*[@id='main_menu']/li[4]/a"
     driver.find_element_by_xpath(xpath).click()
     time.sleep(1)
+    driver.save_screenshot("menu.png")
 
 
 def siteSearch(driver, chatId, date):
