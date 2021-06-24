@@ -19,7 +19,7 @@ def connectWebsite(driver):
     time.sleep(1)
     driver.save_screenshot("main.png")
 
-    xpath = "//*[@id='main_menu']/li[4]/a"
+    xpath = "//*[@id='main_menu']/li[4]/a/span"
     driver.find_element_by_xpath(xpath).click()
     time.sleep(1)
     driver.save_screenshot("menu.png")

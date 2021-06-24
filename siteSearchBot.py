@@ -118,58 +118,58 @@ try:
                                 sinbulTerm.append(date['term'])
                                 sinbulChatId.append(db['chat_id'])
 
-        # 진하캠핑장 검색
-        index = 0
-        for date in jinhaDate:
-            startDateYear = date[0:2]
-            startDateMonth = date[2:4]
-            startDateDay = date[4:]
-            jinhaModDate = '20'+startDateYear+'-'+startDateMonth+'-'+startDateDay
-            jinhaDateType = datetime.date(
-                int('20'+startDateYear), int(startDateMonth), int(startDateDay))
-            if (today <= jinhaDateType):
-                term = jinhaTerm[index]
-                chatId = jinhaChatId[index]
-                jinha.connectWebsite(driver, jinhaModDate)
-                jinha.thisMonthSearch(
-                    driver, campName[0], chatId, jinhaModDate, term)
-            index += 1
+        # # 진하캠핑장 검색
+        # index = 0
+        # for date in jinhaDate:
+        #     startDateYear = date[0:2]
+        #     startDateMonth = date[2:4]
+        #     startDateDay = date[4:]
+        #     jinhaModDate = '20'+startDateYear+'-'+startDateMonth+'-'+startDateDay
+        #     jinhaDateType = datetime.date(
+        #         int('20'+startDateYear), int(startDateMonth), int(startDateDay))
+        #     if (today <= jinhaDateType):
+        #         term = jinhaTerm[index]
+        #         chatId = jinhaChatId[index]
+        #         jinha.connectWebsite(driver, jinhaModDate)
+        #         jinha.thisMonthSearch(
+        #             driver, campName[0], chatId, jinhaModDate, term)
+        #     index += 1
 
-        # 삼락캠핑장 검색
-        index = 0
-        for date in samrakDate:
-            startDateYear = date[0:2]
-            startDateMonth = date[2:4]
-            startDateDay = date[4:]
-            samrakModDate = '20'+startDateYear+'-'+startDateMonth+'-'+startDateDay
-            samrakDateType = datetime.date(
-                int('20'+startDateYear), int(startDateMonth), int(startDateDay))
-            oneMonthAfterDate = today + datetime.timedelta(days=30)
-            if (today <= samrakDateType and oneMonthAfterDate >= samrakDateType):
-                term = samrakTerm[index]
-                chatId = samrakChatId[index]
-                samrak.connectWebsite(driver, samrakModDate, term)
-                samrak.siteSearch(
-                    driver, campName[1], chatId, samrakModDate, term)
-            index += 1
+        # # 삼락캠핑장 검색
+        # index = 0
+        # for date in samrakDate:
+        #     startDateYear = date[0:2]
+        #     startDateMonth = date[2:4]
+        #     startDateDay = date[4:]
+        #     samrakModDate = '20'+startDateYear+'-'+startDateMonth+'-'+startDateDay
+        #     samrakDateType = datetime.date(
+        #         int('20'+startDateYear), int(startDateMonth), int(startDateDay))
+        #     oneMonthAfterDate = today + datetime.timedelta(days=30)
+        #     if (today <= samrakDateType and oneMonthAfterDate >= samrakDateType):
+        #         term = samrakTerm[index]
+        #         chatId = samrakChatId[index]
+        #         samrak.connectWebsite(driver, samrakModDate, term)
+        #         samrak.siteSearch(
+        #             driver, campName[1], chatId, samrakModDate, term)
+        #     index += 1
 
-        # 화랑마을(육부촌) 검색
-        index = 0
-        for date in hwarangDate:
-            startDateYear = date[0:2]
-            startDateMonth = date[2:4]
-            startDateDay = date[4:]
-            hwarangModDate = '20'+startDateYear+'-'+startDateMonth+'-'+startDateDay
-            hwarangDateType = datetime.date(
-                int('20'+startDateYear), int(startDateMonth), int(startDateDay))
-            if (today <= hwarangDateType):
-                term = hwarangTerm[index]
-                chatId = hwarangChatId[index]
-                hwarang.connectWebsite(
-                    driver, startDateYear, startDateMonth, startDateDay)
-                hwarang.siteSearch(
-                    driver, campName[2], chatId, hwarangModDate, term)
-            index += 1
+        # # 화랑마을(육부촌) 검색
+        # index = 0
+        # for date in hwarangDate:
+        #     startDateYear = date[0:2]
+        #     startDateMonth = date[2:4]
+        #     startDateDay = date[4:]
+        #     hwarangModDate = '20'+startDateYear+'-'+startDateMonth+'-'+startDateDay
+        #     hwarangDateType = datetime.date(
+        #         int('20'+startDateYear), int(startDateMonth), int(startDateDay))
+        #     if (today <= hwarangDateType):
+        #         term = hwarangTerm[index]
+        #         chatId = hwarangChatId[index]
+        #         hwarang.connectWebsite(
+        #             driver, startDateYear, startDateMonth, startDateDay)
+        #         hwarang.siteSearch(
+        #             driver, campName[2], chatId, hwarangModDate, term)
+        #     index += 1
 
         # 신불산 검색
         index = 0
