@@ -43,8 +43,8 @@ try:
     webdriver_options.add_argument('--ignore-certificate-errors')
     # webdriver_options.add_argument('--start-maximized')
 
-    # webdriver_options.add_argument(
-    #     f'user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36')
+    webdriver_options.add_argument(
+        f'user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36')
 
     driver = webdriver.Chrome(pathChromedriver, options=webdriver_options)
     driver.maximize_window()
