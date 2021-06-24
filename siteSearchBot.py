@@ -33,6 +33,13 @@ try:
     webdriver_options = webdriver.ChromeOptions()
     webdriver_options .add_argument('--headless')
     webdriver_options.add_argument('lang=ko_KR')
+    webdriver_options.add_argument('headless')
+    webdriver_options.add_argument('window-size=1920x1080')
+    webdriver_options.add_argument('disable-gpu')
+
+    webdriver_options.add_argument('start-maximized')
+    webdriver_options.add_argument('disable-infobars')
+    webdriver_options.add_argument('--disable-extensions')
     # webdriver_options.add_argument('--start-maximized')
 
     # webdriver_options.add_argument(
@@ -176,7 +183,7 @@ try:
                 term = sinbulTerm[index]
                 chatId = sinbulChatId[index]
                 sinbul.connectWebsite(driver)
-                print("신불 접속")
+                # print("신불 접속")
                 sinbul.siteSearch(
                     driver, chatId, sinbulModDate)
             index += 1
