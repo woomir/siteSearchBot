@@ -40,6 +40,7 @@ try:
     webdriver_options.add_argument('start-maximized')
     webdriver_options.add_argument('disable-infobars')
     webdriver_options.add_argument('--disable-extensions')
+    webdriver_options.add_argument('--ignore-certificate-errors')
     # webdriver_options.add_argument('--start-maximized')
 
     # webdriver_options.add_argument(

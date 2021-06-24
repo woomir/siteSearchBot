@@ -37,6 +37,7 @@ def siteSearch(driver, chatId, date):
         time.sleep(1)
         print("date click")
     except:
+        driver.save_screenshot("test.png")
         print("date click failure")
         return False
     try:
