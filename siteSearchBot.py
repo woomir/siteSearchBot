@@ -31,13 +31,13 @@ try:
         pathChromedriver = '/home/ubuntu/chromedriver'
 
     webdriver_options = webdriver.ChromeOptions()
-    webdriver_options .add_argument('--headless')
+    # webdriver_options .add_argument('--headless')
     webdriver_options.add_argument('lang=ko_KR')
     webdriver_options.add_argument('headless')
     webdriver_options.add_argument('window-size=1920x1080')
     webdriver_options.add_argument('disable-gpu')
 
-    webdriver_options.add_argument('start-maximized')
+    # webdriver_options.add_argument('start-maximized')
     webdriver_options.add_argument('disable-infobars')
     webdriver_options.add_argument('--disable-extensions')
     webdriver_options.add_argument('--ignore-certificate-errors')
@@ -47,8 +47,13 @@ try:
         'user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36')
 
     driver = webdriver.Chrome(pathChromedriver, options=webdriver_options)
-    driver.maximize_window()
+    # driver.maximize_window()
     # driver.set_window_size(1920, 1080)
+
+    TEST_URL = 'https://intoli.com/blog/making-chrome-headless-undetectable/chrome-headless-test.html'
+    driver.get(TEST_URL)
+    user_agent = driver.find_element_by_css_selector('#user-agent').text
+    print('User-Agent: ', user_agent)
 
     while roofCheck < 1:
         # 오늘 날짜 확인
