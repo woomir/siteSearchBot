@@ -20,7 +20,7 @@ def connectWebsite(driver):
     response = requests.get(url)
 
     print(response.status_code)
-    print(response.text)
+    # print(response.text)
     # driver.save_screenshot("main.png")
 
     # xpath = "//*[@id='header']/div[1]/div/ul/li[1]/a"
