@@ -41,6 +41,12 @@ try:
     webdriver_options.add_argument('disable-infobars')
     webdriver_options.add_argument('--disable-extensions')
     webdriver_options.add_argument('--ignore-certificate-errors')
+    webdriver_options.add_argument('--ignore-certificate-errors-spki-list')
+    webdriver_options.add_argument('--ignore-ssl-errors')
+    webdriver_options.add_experimental_option(
+        "excludeSwitches", ["enable-automation"])
+    webdriver_options.add_experimental_option('useAutomationExtension', False)
+    webdriver_options.addArguments("--disable-dev-shm-usage")
     # webdriver_options.add_argument('--start-maximized')
 
     webdriver_options.add_argument(

@@ -9,7 +9,6 @@ from telegramCustomFunc import telegramSendMessage
 import platform
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.alert import Alert
-import requests
 
 
 def connectWebsite(driver):
@@ -21,11 +20,6 @@ def connectWebsite(driver):
     driver.get(url)
     time.sleep(1)
     driver.save_screenshot("main.png")
-    s = requests.Session()
-    s.get(url)
-
-    for cookie in s.cookies:
-        print(cookie)
 
     # xpath = "//*[@id='header']/div[1]/div/ul/li[1]/a"
 
