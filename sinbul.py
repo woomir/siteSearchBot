@@ -21,10 +21,11 @@ def connectWebsite(driver):
 
     # xpath = "//*[@id='header']/div[1]/div/ul/li[1]/a"
 
-    xpath = "//*[@id='main_menu']/li[4]/a"
-    # driver.find_element_by_xpath(xpath).click()
+    xpath = "//*[@id='main_menu']/li[1]/a"
+
+    driver.find_element_by_xpath(xpath).click()
     # test = driver.find_element_by_css_selector('li.depth1.menu04')
-    driver.find_element_by_css_selector('li.depth1.menu04').click()
+    # driver.find_element_by_css_selector('li.depth1.menu04').click()
 
     # driver.execute_script("arguments[0].click();", test)
     time.sleep(1)
