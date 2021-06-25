@@ -51,9 +51,19 @@ try:
     # driver.set_window_size(1920, 1080)
 
     TEST_URL = 'https://intoli.com/blog/making-chrome-headless-undetectable/chrome-headless-test.html'
+    driver.get('about:blank')
+    driver.execute_script(
+        "Object.defineProperty(navigator, 'plugins', {get: function() {return[1, 2, 3, 4, 5]}})")
+    driver.execute_script(
+        "Object.defineProperty(navigator, 'languages', {get: function() {return ['ko-KR', 'ko']}})")
     driver.get(TEST_URL)
     user_agent = driver.find_element_by_css_selector('#user-agent').text
-    print('User-Agent: ', user_agent)
+    plugins_length = driver.find_element_by_css_selector(
+        '#plugins-length').text
+    languages = driver.find_element_by_css_selector('#languages').text
+    # print('User-Agent: ', user_agent)
+    # print('Plugin length: ', plugins_length)
+    # print('languages: ', languages)
 
     while roofCheck < 1:
         # 오늘 날짜 확인
