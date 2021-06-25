@@ -13,7 +13,9 @@ from selenium.webdriver.common.alert import Alert
 
 def connectWebsite(driver):
     # url = 'https://camping.ulju.ulsan.kr/Pmreservation.do'
-    url = 'https://camping.ulju.ulsan.kr/login.do'
+    url = 'https://daewangam.donggu.ulsan.kr/camping/Pmreservation.do'
+
+    # url = 'https://camping.ulju.ulsan.kr/login.do'
 
     driver.get(url)
     time.sleep(1)
@@ -22,16 +24,16 @@ def connectWebsite(driver):
     # xpath = "//*[@id='header']/div[1]/div/ul/li[1]/a"
 
     # xpath = "//*[@id='main_menu']/li[1]/a"
-    xpath = "//a[@id='login_ulsan']"
-    driver.find_element_by_xpath(xpath).click()
-    driver.find_element_by_xpath("//input[@name='userid']").send_keys("woomir")
-    driver.find_element_by_xpath(
-        "//input[@name='password']").send_keys("$52Telecast")
-    xpath = "//*[@id='loginfrm']/div/input"
-    driver.find_element_by_xpath(xpath).click()
+    # xpath = "//a[@id='login_ulsan']"
+    # driver.find_element_by_xpath(xpath).click()
+    # driver.find_element_by_xpath("//input[@name='userid']").send_keys("woomir")
+    # driver.find_element_by_xpath(
+    #     "//input[@name='password']").send_keys("$52Telecast")
+    # xpath = "//*[@id='loginfrm']/div/input"
+    # driver.find_element_by_xpath(xpath).click()
 
-    url = 'https://camping.ulju.ulsan.kr/Pmreservation.do'
-    driver.get(url)
+    # url = 'https://camping.ulju.ulsan.kr/Pmreservation.do'
+    # driver.get(url)
 
     # test = driver.find_element_by_css_selector('li.depth1.menu04')
     # driver.find_element_by_css_selector('li.depth1.menu04').click()
