@@ -12,17 +12,19 @@ from selenium.webdriver.common.alert import Alert
 
 
 def connectWebsite(driver):
-    url = 'https://camping.ulju.ulsan.kr/Pmreservation.do'
-    # url = 'https://camping.ulju.ulsan.kr'
+    # url = 'https://camping.ulju.ulsan.kr/Pmreservation.do'
+    url = 'https://camping.ulju.ulsan.kr'
 
     driver.get(url)
     time.sleep(1)
     driver.save_screenshot("main.png")
 
-    xpath = "//*[@id='header']/div[1]/div/ul/li[1]/a"
+    # xpath = "//*[@id='header']/div[1]/div/ul/li[1]/a"
 
-    # xpath = "//*[@id='main_menu']/li[4]/a"
-    driver.find_element_by_xpath(xpath).click()
+    xpath = "//*[@id='main_menu']/li[4]/a"
+    # driver.find_element_by_xpath(xpath).click()
+    test = driver.find_element_by_xpath(xpath).click()
+    driver.execute_script("arguments[0].click();", test)
     time.sleep(1)
     driver.save_screenshot("menu.png")
 
