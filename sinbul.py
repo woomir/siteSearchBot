@@ -17,9 +17,9 @@ def connectWebsite(driver):
 
     driver.get(url)
     time.sleep(1)
-    response = requests.get(url)
+    # response = requests.get(url)
 
-    print(response.status_code)
+    # print(response.status_code)
     # print(response.text)
     # driver.save_screenshot("main.png")
 
