@@ -9,17 +9,23 @@ from telegramCustomFunc import telegramSendMessage
 import platform
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.alert import Alert
+import requests
 
 
 def connectWebsite(driver):
-    # url = 'https://camping.ulju.ulsan.kr/Pmreservation.do'
-    url = 'https://daewangam.donggu.ulsan.kr/camping/Pmreservation.do'
+    url = 'https://camping.ulju.ulsan.kr/Pmreservation.do'
+    # url = 'https://daewangam.donggu.ulsan.kr/camping/Pmreservation.do'
 
     # url = 'https://camping.ulju.ulsan.kr/login.do'
 
     driver.get(url)
     time.sleep(1)
     driver.save_screenshot("main.png")
+    s = requests.Session()
+    s.get(url)
+
+    for cookie in s.cookies:
+        print(cookie)
 
     # xpath = "//*[@id='header']/div[1]/div/ul/li[1]/a"
 
