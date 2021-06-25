@@ -23,25 +23,7 @@ def connectWebsite(driver):
     # print(response.text)
     # driver.save_screenshot("main.png")
 
-    # xpath = "//*[@id='header']/div[1]/div/ul/li[1]/a"
-
-    # xpath = "//*[@id='main_menu']/li[1]/a"
-    # xpath = "//a[@id='login_ulsan']"
     # driver.find_element_by_xpath(xpath).click()
-    # driver.find_element_by_xpath("//input[@name='userid']").send_keys("woomir")
-    # driver.find_element_by_xpath(
-    #     "//input[@name='password']").send_keys("$52Telecast")
-    # xpath = "//*[@id='loginfrm']/div/input"
-    # driver.find_element_by_xpath(xpath).click()
-
-    # url = 'https://camping.ulju.ulsan.kr/Pmreservation.do'
-    # driver.get(url)
-
-    # test = driver.find_element_by_css_selector('li.depth1.menu04')
-    # driver.find_element_by_css_selector('li.depth1.menu04').click()
-
-    # driver.execute_script("arguments[0].click();", test)
-    # time.sleep(1)
     # driver.save_screenshot("menu.png")
 
 
@@ -49,24 +31,20 @@ def siteSearch(driver, chatId, date):
     errorCheck = 0
 
     try:
-        html = driver.page_source
-        soup = BeautifulSoup(html, 'html.parser')
-        active = soup.find("table", {"id": "tableSite"})
-        # print(soup)
         xpath = "//td[@data-date='" + date + "']"
         # xpath = "//td[@data-date='2021-06-24']"
         driver.find_element_by_xpath(xpath).click()
         time.sleep(1)
-        print("date click")
+        # print("date click")
     except:
-        driver.save_screenshot("test.png")
-        print("date click failure")
+        # driver.save_screenshot("test.png")
+        # print("date click failure")
         return False
     try:
         Alert(driver).accept()
-        print("Alert click")
+        # print("Alert click")
     except:
-        print("Alert click failure")
+        # print("Alert click failure")
         errorCheck = 1
 
     time.sleep(1)
@@ -76,7 +54,7 @@ def siteSearch(driver, chatId, date):
             xpath = "//*[@id='divAjaxTable']/div/label"
             driver.find_element_by_xpath(xpath).click()
             time.sleep(1)
-            print("label click")
+            # print("label click")
 
             for i in range(1, 4):
                 activeSiteInfo = []
@@ -85,7 +63,7 @@ def siteSearch(driver, chatId, date):
                 xpath = "//*[@id='divAjaxTable']/input[" + str(i) + "]"
                 driver.find_element_by_xpath(xpath).click()
                 time.sleep(1)
-                print("input click")
+                # print("input click")
 
                 html = driver.page_source
                 soup = BeautifulSoup(html, 'html.parser')
@@ -113,4 +91,5 @@ def siteSearch(driver, chatId, date):
                         telegramSendMessage(
                             str(chatId), campName, date, 'none', 'none')
         except:
-            print("input click failure")
+            # print("input click failure")
+            return False
