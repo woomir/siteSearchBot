@@ -15,7 +15,7 @@ def connectWebsite(driver):
 
     url = 'https://camping.ulju.ulsan.kr/Pmreservation.do'
 
-    # driver.get(url)
+    driver.get(url)
     time.sleep(1)
     response = requests.get(url)
 
