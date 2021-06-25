@@ -46,7 +46,7 @@ try:
     webdriver_options.add_experimental_option(
         "excludeSwitches", ["enable-automation"])
     webdriver_options.add_experimental_option('useAutomationExtension', False)
-    webdriver_options.addArguments("--disable-dev-shm-usage")
+    webdriver_options.add_arguments("--disable-dev-shm-usage")
     # webdriver_options.add_argument('--start-maximized')
 
     webdriver_options.add_argument(
