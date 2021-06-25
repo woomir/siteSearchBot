@@ -38,15 +38,15 @@ try:
     webdriver_options.add_argument('disable-gpu')
 
     # webdriver_options.add_argument('start-maximized')
-    webdriver_options.add_argument('disable-infobars')
-    webdriver_options.add_argument('--disable-extensions')
-    webdriver_options.add_argument('--ignore-certificate-errors')
-    webdriver_options.add_argument('--ignore-certificate-errors-spki-list')
-    webdriver_options.add_argument('--ignore-ssl-errors')
-    webdriver_options.add_experimental_option(
-        "excludeSwitches", ["enable-automation"])
-    webdriver_options.add_experimental_option('useAutomationExtension', False)
-    webdriver_options.add_argument("--disable-dev-shm-usage")
+    # webdriver_options.add_argument('disable-infobars')
+    # webdriver_options.add_argument('--disable-extensions')
+    # webdriver_options.add_argument('--ignore-certificate-errors')
+    # webdriver_options.add_argument('--ignore-certificate-errors-spki-list')
+    # webdriver_options.add_argument('--ignore-ssl-errors')
+    # webdriver_options.add_experimental_option(
+    # "excludeSwitches", ["enable-automation"])
+    # webdriver_options.add_experimental_option('useAutomationExtension', False)
+    # webdriver_options.add_argument("--disable-dev-shm-usage")
     # webdriver_options.add_argument('--start-maximized')
 
     webdriver_options.add_argument(
@@ -57,11 +57,11 @@ try:
     # driver.set_window_size(1920, 1080)
 
     # TEST_URL = 'https://intoli.com/blog/making-chrome-headless-undetectable/chrome-headless-test.html'
-    driver.get('about:blank')
-    driver.execute_script(
-        "Object.defineProperty(navigator, 'plugins', {get: function() {return[1, 2, 3, 4, 5]}})")
-    driver.execute_script(
-        "Object.defineProperty(navigator, 'languages', {get: function() {return ['ko-KR', 'ko']}})")
+    # driver.get('about:blank')
+    # driver.execute_script(
+    #     "Object.defineProperty(navigator, 'plugins', {get: function() {return[1, 2, 3, 4, 5]}})")
+    # driver.execute_script(
+    #     "Object.defineProperty(navigator, 'languages', {get: function() {return ['ko-KR', 'ko']}})")
     # driver.get(TEST_URL)
     # user_agent = driver.find_element_by_css_selector('#user-agent').text
     # plugins_length = driver.find_element_by_css_selector(

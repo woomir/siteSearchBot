@@ -39,8 +39,8 @@ def connectWebsite(driver):
     # driver.find_element_by_css_selector('li.depth1.menu04').click()
 
     # driver.execute_script("arguments[0].click();", test)
-    time.sleep(1)
-    driver.save_screenshot("menu.png")
+    # time.sleep(1)
+    # driver.save_screenshot("menu.png")
 
 
 def siteSearch(driver, chatId, date):
