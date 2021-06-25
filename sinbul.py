@@ -9,9 +9,14 @@ from telegramCustomFunc import telegramSendMessage
 import platform
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.alert import Alert
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 def connectWebsite(driver):
+
+    d = DesiredCapabilities.CHROME
+    d['loggingPrefs'] = {'performance': 'ALL'}
+
     url = 'https://camping.ulju.ulsan.kr/Pmreservation.do'
     # url = 'https://daewangam.donggu.ulsan.kr/camping/Pmreservation.do'
 
@@ -19,7 +24,17 @@ def connectWebsite(driver):
 
     driver.get(url)
     time.sleep(1)
-    driver.save_screenshot("main.png")
+    # driver.save_screenshot("main.png")
+
+    print(driver.title)
+
+    print(driver.page_source)
+
+    performance_log = driver.get_log('performance')
+    print(str(performance_log).strip('[]'))
+
+    for entry in driver.get_log('performance'):
+        print(entry)
 
     # xpath = "//*[@id='header']/div[1]/div/ul/li[1]/a"
 
