@@ -37,35 +37,10 @@ try:
     webdriver_options.add_argument('window-size=1920x1080')
     webdriver_options.add_argument('disable-gpu')
 
-    # webdriver_options.add_argument('start-maximized')
-    # webdriver_options.add_argument('disable-infobars')
-    # webdriver_options.add_argument('--disable-extensions')
-    # webdriver_options.add_argument('--ignore-certificate-errors')
-    # webdriver_options.add_argument('--ignore-certificate-errors-spki-list')
-    # webdriver_options.add_argument('--ignore-ssl-errors')
-    # webdriver_options.add_experimental_option(
-    # "excludeSwitches", ["enable-automation"])
-    # webdriver_options.add_experimental_option('useAutomationExtension', False)
-
     webdriver_options.add_argument(
         'user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36')
 
     driver = webdriver.Chrome(pathChromedriver, options=webdriver_options)
-    # driver.maximize_window()
-    # TEST_URL = 'https://intoli.com/blog/making-chrome-headless-undetectable/chrome-headless-test.html'
-    # driver.get('about:blank')
-    # driver.execute_script(
-    #     "Object.defineProperty(navigator, 'plugins', {get: function() {return[1, 2, 3, 4, 5]}})")
-    # driver.execute_script(
-    #     "Object.defineProperty(navigator, 'languages', {get: function() {return ['ko-KR', 'ko']}})")
-    # driver.get(TEST_URL)
-    # user_agent = driver.find_element_by_css_selector('#user-agent').text
-    # plugins_length = driver.find_element_by_css_selector(
-    #     '#plugins-length').text
-    # languages = driver.find_element_by_css_selector('#languages').text
-    # print('User-Agent: ', user_agent)
-    # print('Plugin length: ', plugins_length)
-    # print('languages: ', languages)
 
     while roofCheck < 1:
         # 오늘 날짜 확인
@@ -105,8 +80,6 @@ try:
         if __name__ == '__main__':
             campDb = dbScan()
             if campDb:
-                # print("Get campDb succeeded:")
-                # print(campDb)
                 # 진하캠핑장 구독 데이터 추출
                 for db in campDb:
                     if db['campName'] == campName[0]:

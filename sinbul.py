@@ -17,14 +17,6 @@ def connectWebsite(driver):
 
     driver.get(url)
     time.sleep(1)
-    # response = requests.get(url)
-
-    # print(response.status_code)
-    # print(response.text)
-    # driver.save_screenshot("main.png")
-
-    # driver.find_element_by_xpath(xpath).click()
-    # driver.save_screenshot("menu.png")
 
 
 def siteSearch(driver, chatId, date):
@@ -53,7 +45,7 @@ def siteSearch(driver, chatId, date):
         try:
             xpath = "//*[@id='divAjaxTable']/div/label"
             driver.find_element_by_xpath(xpath).click()
-            time.sleep(1)
+            time.sleep(2)
             # print("label click")
 
             for i in range(1, 4):
@@ -62,7 +54,7 @@ def siteSearch(driver, chatId, date):
                 activeRealSite = []
                 xpath = "//*[@id='divAjaxTable']/input[" + str(i) + "]"
                 driver.find_element_by_xpath(xpath).click()
-                time.sleep(1)
+                time.sleep(2)
                 # print("input click")
 
                 html = driver.page_source
