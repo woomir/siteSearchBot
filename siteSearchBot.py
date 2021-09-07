@@ -45,7 +45,7 @@ try:
     while roofCheck < 1:
         # 오늘 날짜 확인
         today = datetime.date.today()
-        sleepRandomTime = random.randrange(5, 10)
+        sleepRandomTime = random.randrange(1, 3)
 
         campName = ['울주해양레포츠센터', '삼락캠핑장', '화랑마을(육부촌)', '신불산(작천정, 등억, 달빛)']
         jinhaDate = []
@@ -183,4 +183,4 @@ try:
 
 except Exception as e:
     teleFunc.telegramSimpleMessage('1003456250', '프로그램 정지')
-    logger.error('Failed: ' + str(e))
+    # logger.error('Failed: ' + str(e))
