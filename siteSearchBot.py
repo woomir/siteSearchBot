@@ -65,48 +65,40 @@ try:
         sinbulChatId = []
 
         session = boto3.session.Session(profile_name='siteSearch')
+        dynamodb = session.resource('dynamodb')  # bucket 목록
+        table = dynamodb.Table('siteSearchBot_campInfo')
 
-        def dbScan(dynamodb=None):
-            dynamodb = session.resource('dynamodb')  # bucket 목록
-            table = dynamodb.Table('siteSearchBot_campInfo')
-
+        def dbScan(campName, dynamodb=None):
             try:
-                response = table.scan()
+                response = table.scan(
+                    FilterExpression = Attr('campName').eq(campName)
+                )
             except ClientError as e:
                 print(e.response['Error']['Message'])
             else:
                 return response['Items']
 
-        if __name__ == '__main__':
-            campDb = dbScan()
-            if campDb:
-                # 진하캠핑장 구독 데이터 추출
-                for db in campDb:
-                    if db['campName'] == campName[0]:
-                        if 'selectedDate' in db:
-                            for date in db['selectedDate']:
-                                jinhaDate.append(date['startDate'])
-                                jinhaTerm.append(date['term'])
-                                jinhaChatId.append(db['chat_id'])
-                    elif db['campName'] == campName[2]:
-                        if 'selectedDate' in db:
-                            for date in db['selectedDate']:
-                                hwarangDate.append(date['startDate'])
-                                hwarangTerm.append(date['term'])
-                                hwarangChatId.append(db['chat_id'])
-                    elif db['campName'] == campName[1]:
-                        if 'selectedDate' in db:
-                            for date in db['selectedDate']:
-                                samrakDate.append(date['startDate'])
-                                samrakTerm.append(date['term'])
-                                samrakChatId.append(db['chat_id'])
+        def dateExtract(data):
+            date = []
+            for i in range(0, len(data)):
+                element = data[i]
+                if element.get('selectedDate') != None:
+                    for j in range(0,len(element['selectedDate'])):
+                        b = element['selectedDate'][j]['startDate']
+                        if b not in date:
+                            date.append(b)
+            return date
 
-                    elif db['campName'] == campName[3]:
-                        if 'selectedDate' in db:
-                            for date in db['selectedDate']:
-                                sinbulDate.append(date['startDate'])
-                                sinbulTerm.append(date['term'])
-                                sinbulChatId.append(db['chat_id'])
+        if __name__ == '__main__':
+            jinhaDb = dbScan('울주해양레포츠센터')
+            hwarangDb = dbScan('화랑마을(육부촌)')
+            samrakDb = dbScan('삼락캠핑장')
+            sinbulDb = dbScan('신불산(작천정, 등억, 달빛)')
+
+            jinhaDate = dateExtract(jinhaDb)
+            hwarangDate = dateExtract(hwarangDb)
+            samrakDate = dateExtract(samrakDb)
+            sinbulDate = dateExtract(sinbulDb)
 
         # 진하캠핑장 검색
         index = 0
@@ -118,11 +110,10 @@ try:
             jinhaDateType = datetime.date(
                 int('20'+startDateYear), int(startDateMonth), int(startDateDay))
             if (today <= jinhaDateType):
-                term = jinhaTerm[index]
                 chatId = jinhaChatId[index]
                 jinha.connectWebsite(driver, jinhaModDate)
                 jinha.thisMonthSearch(
-                    driver, campName[0], chatId, jinhaModDate, term)
+                    driver, campName[0], chatId, jinhaModDate, 1)
             index += 1
 
         # 삼락캠핑장 검색
