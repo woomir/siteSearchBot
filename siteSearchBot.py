@@ -32,7 +32,7 @@ try:
         pathChromedriver = '/home/ubuntu/chromedriver'
 
     webdriver_options = webdriver.ChromeOptions()
-    # webdriver_options .add_argument('--headless')
+    webdriver_options .add_argument('--headless')
     webdriver_options.add_argument('lang=ko_KR')
     webdriver_options.add_argument('window-size=1920x1080')
     webdriver_options.add_argument('disable-gpu')
@@ -182,6 +182,6 @@ try:
         time.sleep(sleepRandomTime)
 
 except Exception as e:
-    # teleFunc.telegramSimpleMessage('1003456250', '프로그램 정지')
+    teleFunc.telegramSimpleMessage('1003456250', '프로그램 정지')
     print(e)
     # logger.error('Failed: ' + str(e))

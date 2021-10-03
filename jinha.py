@@ -18,7 +18,6 @@ def changeDateType(date):
     return {'modDate': modDate, 'dateType':dateType, 'startDateYear': startDateYear, 'startDateMonth': startDateMonth, 'startDateDay': startDateDay}
 
 def thisMonthSearch(driver, searchDateRealList, dbList):
-    activeDate = []
     avalThisMonth = []
     avalNextMonth = []
     dataValList = ['a', 'b', 'c', 'd', 'e', 'f']
