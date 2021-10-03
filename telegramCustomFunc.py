@@ -12,7 +12,7 @@ def telegramSendMessage(chatId: str, campName: str, date: str, areaName="none", 
     elif areaName == "none" and term != "none":
         telegramMessageText = campName + ': ' + date + ' ' + term + '박 예약 가능'
     elif areaName != "none" and term == "none":
-        telegramMessageText = campName + ': ' + date + ' ' + areaName + '구역 예약 가능'
+        telegramMessageText = campName + ': ' + date + ' ' + areaName + ' 예약 가능'
     bot.sendMessage(chat_id=str(chatId), text=telegramMessageText)
 
 
