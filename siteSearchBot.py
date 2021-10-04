@@ -182,6 +182,6 @@ try:
         time.sleep(sleepRandomTime)
 
 except Exception as e:
-    teleFunc.telegramSimpleMessage('1003456250', '프로그램 정지')
+    teleFunc.telegramSimpleMessage('1003456250', '프로그램 정지'+print(e))
     print(e)
     # logger.error('Failed: ' + str(e))
