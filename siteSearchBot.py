@@ -71,7 +71,7 @@ try:
                 for i in range(0,len(a['selectedDate'])):
                     dateT.append(a['selectedDate'][i]['startDate'])
                 group.append({'id':a['chat_id'],'date':dateT})
-        return group
+        return sorted(group, key = lambda item: item['id'])
 
     def changeDateType(date):
         startDateYear = date[0:2]
@@ -116,10 +116,10 @@ try:
 
         
         if __name__ == '__main__':
-            jinhaDb = dbScan('울주해양레포츠센터')
-            hwarangDb = dbScan('화랑마을(육부촌)')
-            samrakDb = dbScan('삼락캠핑장')
-            sinbulDb = dbScan('신불산(작천정, 등억, 달빛)')
+            jinhaDb = sorted(dbScan('울주해양레포츠센터'), key=lambda item:item['chat_id'])
+            hwarangDb = sorted(dbScan('화랑마을(육부촌)'), key=lambda item:item['chat_id'])
+            samrakDb = sorted(dbScan('삼락캠핑장'), key=lambda item:item['chat_id'])
+            sinbulDb = sorted(dbScan('신불산(작천정, 등억, 달빛)'), key=lambda item:item['chat_id'])
 
             jinhaDate = dateExtract(jinhaDb)
             hwarangDate = dateExtract(hwarangDb)
