@@ -171,8 +171,8 @@ try:
         for date in sinbulDate:
             searchDate = changeDateType(date)
             if (today <= searchDate['dateType']):
-                term = sinbulTerm[index]
-                chatId = sinbulChatId[index]
+                # term = sinbulTerm[index]
+                chatId = sinbulList[index]['id']
                 sinbul.connectWebsite(driver)
                 sinbul.siteSearch(
                     driver, chatId, searchDate['modDate'])
