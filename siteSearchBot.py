@@ -146,7 +146,8 @@ try:
             searchDate = changeDateType(date)
             oneMonthAfterDate = today + datetime.timedelta(days=30)
             if (today <= searchDate['dateType'] and oneMonthAfterDate >= searchDate['dateType']):
-                term = samrakTerm[index]
+                # term = samrakTerm[index]
+                term = 1
                 chatId = samrakChatId[index]
                 samrak.connectWebsite(driver, searchDate['modDate'], term)
                 samrak.siteSearch(
@@ -158,7 +159,8 @@ try:
         for date in hwarangDate:
             searchDate = changeDateType(date)
             if (today <= searchDate['dateType']):
-                term = hwarangTerm[index]
+                # term = hwarangTerm[index]
+                term = 1
                 chatId = hwarangChatId[index]
                 hwarang.connectWebsite(
                     driver, searchDate['startDateYear'], searchDate['startDateMonth'], searchDate['startDateDay'])
