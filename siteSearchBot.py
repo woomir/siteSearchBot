@@ -32,7 +32,7 @@ try:
         pathChromedriver = '/home/ubuntu/chromedriver'
 
     webdriver_options = webdriver.ChromeOptions()
-    webdriver_options .add_argument('--headless')
+    # webdriver_options .add_argument('--headless')
     webdriver_options.add_argument('lang=ko_KR')
     webdriver_options.add_argument('window-size=1920x1080')
     webdriver_options.add_argument('disable-gpu')
@@ -86,7 +86,7 @@ try:
     while roofCheck < 1:
         # 오늘 날짜 확인
         today = datetime.date.today()
-        sleepRandomTime = random.randrange(1, 3)
+        
 
         campName = ['울주해양레포츠센터', '삼락캠핑장', '화랑마을(육부촌)', '신불산(작천정, 등억, 달빛)']
         jinhaDate = []
@@ -180,6 +180,16 @@ try:
                     driver, chatId, searchDate['modDate'])
             index += 1
 
+        sleepRandomTimeVal = 0
+        if not samrakDate:
+            sleepRandomTimeVal += 0.5
+        if not hwarangDate:
+            sleepRandomTimeVal += 0.5
+        if not sinbulDate:
+            sleepRandomTimeVal += 0.5
+        if not jinhaDate:
+            sleepRandomTimeVal += 0.5
+        sleepRandomTime = random.uniform(0, sleepRandomTimeVal)
         # 랜덤으로 대기 후 실행
         time.sleep(sleepRandomTime)
 
