@@ -180,18 +180,18 @@ try:
                     driver, chatId, searchDate['modDate'])
             index += 1
 
-        sleepRandomTimeVal = 0
-        if not samrakDate:
-            sleepRandomTimeVal += 0.5
-        if not hwarangDate:
-            sleepRandomTimeVal += 0.5
-        if not sinbulDate:
-            sleepRandomTimeVal += 0.5
-        if not jinhaDate:
-            sleepRandomTimeVal += 0.5
-        sleepRandomTime = random.uniform(0, sleepRandomTimeVal)
-        # 랜덤으로 대기 후 실행
-        time.sleep(sleepRandomTime)
+        # sleepRandomTimeVal = 0
+        # if not samrakDate:
+        #     sleepRandomTimeVal += 0.5
+        # if not hwarangDate:
+        #     sleepRandomTimeVal += 0.5
+        # if not sinbulDate:
+        #     sleepRandomTimeVal += 0.5
+        # if not jinhaDate:
+        #     sleepRandomTimeVal += 0.5
+        # sleepRandomTime = random.uniform(0, sleepRandomTimeVal)
+        # # 랜덤으로 대기 후 실행
+        # time.sleep(sleepRandomTime)
 
 except Exception as e:
     teleFunc.telegramSimpleMessage('1003456250', '프로그램 정지'+print(e))
