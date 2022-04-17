@@ -19,7 +19,6 @@ import platform
 
 try:
     roofCheck = 0
-
     # 사용자 컴퓨터 OS 확인 후 설정값 반환
     systemOS = platform.system()
     pathChromedriver = ''
@@ -86,7 +85,7 @@ try:
     while roofCheck < 1:
         # 오늘 날짜 확인
         today = datetime.date.today()
-        
+        startTime = time.time()
 
         campName = ['울주해양레포츠센터', '삼락캠핑장', '화랑마을(육부촌)', '신불산(작천정, 등억, 달빛)']
         jinhaDate = []
@@ -138,7 +137,7 @@ try:
             searchDate = changeDateType(date)
             if (today <= searchDate['dateType']):
                 jinhaSearchDateRealList.append(searchDate['modDate'])
-        jinha.thisMonthSearch(driver, jinhaSearchDateRealList, jinhaList)
+        jinha.mainSearch(driver, jinhaSearchDateRealList, jinhaList)
 
         # 삼락캠핑장 검색
         index = 0
@@ -193,7 +192,14 @@ try:
         # # 랜덤으로 대기 후 실행
         # time.sleep(sleepRandomTime)
 
+        endTime = time.time()
+        measureTime = endTime - startTime
+
+        # 시간 측정
+        # print("시간")
+        # print(measureTime)
+
 except Exception as e:
     teleFunc.telegramSimpleMessage('1003456250', '프로그램 정지'+print(e))
+    print(datetime.datetime.now(),"===================================")
     print(e)
-    # logger.error('Failed: ' + str(e))
