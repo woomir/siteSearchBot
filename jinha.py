@@ -44,12 +44,12 @@ def siteSearch(calDate, driver, dbDateList):
             siteFind = jinhaSoup.select('a.num')
             for active in siteFind:
                 if '예약가능' in active.select_one('img')['alt']:
-                    if active['data-val'] in dbDateList:
+                    if active['data-val'].replace('-','')[2:] in dbDateList:
                         avalList.append({'date': active['data-val'], 'siteNum': active.text})
     return avalList
 
 def siteMatching(avalMonth, searchDateRealList, dbList):
-    for avalThisDay in avalMonth:
+    for avalDay in avalMonth:
         if avalDay['date'] in searchDateRealList:
             for dbListElement in dbList:
                 for c in dbListElement['date']:
@@ -65,6 +65,7 @@ def mainSearch(driver, searchDateRealList, dbList):
     avalThisMonth = siteSearch(today, driver, dbDateList)
     # 다음달 찾기
     avalNextMonth = siteSearch(nextMonth, driver, dbDateList)
+
     # 자리 있는 날짜와 검색 날짜 매칭
     siteMatching(avalThisMonth, searchDateRealList, dbList)
     siteMatching(avalNextMonth, searchDateRealList, dbList)
