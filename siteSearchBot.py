@@ -131,13 +131,13 @@ try:
             sinbulList = listSearch(sinbulDb)
 
         # 진하캠핑장 검색
-        # jinhaSearchDateRealList = []
-        # for date in jinhaDate:
-        #     # 검색할 날짜를 list로 변환
-        #     searchDate = changeDateType(date)
-        #     if (today <= searchDate['dateType']):
-        #         jinhaSearchDateRealList.append(searchDate['modDate'])
-        # jinha.mainSearch(driver, jinhaSearchDateRealList, jinhaList)
+        jinhaSearchDateRealList = []
+        for date in jinhaDate:
+            # 검색할 날짜를 list로 변환
+            searchDate = changeDateType(date)
+            if (today <= searchDate['dateType']):
+                jinhaSearchDateRealList.append(searchDate['modDate'])
+        jinha.mainSearch(driver, jinhaSearchDateRealList, jinhaList)
 
         # 삼락캠핑장 검색
         index = 0
