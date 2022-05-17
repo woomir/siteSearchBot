@@ -131,13 +131,13 @@ try:
             sinbulList = listSearch(sinbulDb)
 
         # 진하캠핑장 검색
-        jinhaSearchDateRealList = []
-        for date in jinhaDate:
-            # 검색할 날짜를 list로 변환
-            searchDate = changeDateType(date)
-            if (today <= searchDate['dateType']):
-                jinhaSearchDateRealList.append(searchDate['modDate'])
-        jinha.mainSearch(driver, jinhaSearchDateRealList, jinhaList)
+        # jinhaSearchDateRealList = []
+        # for date in jinhaDate:
+        #     # 검색할 날짜를 list로 변환
+        #     searchDate = changeDateType(date)
+        #     if (today <= searchDate['dateType']):
+        #         jinhaSearchDateRealList.append(searchDate['modDate'])
+        # jinha.mainSearch(driver, jinhaSearchDateRealList, jinhaList)
 
         # 삼락캠핑장 검색
         index = 0
@@ -168,32 +168,17 @@ try:
             index += 1
 
         # 신불산 검색
-        index = 0
-        for date in sinbulDate:
-            searchDate = changeDateType(date)
-            if (today <= searchDate['dateType']):
-                # term = sinbulTerm[index]
-                chatId = sinbulList[index]['id']
-                sinbul.connectWebsite(driver)
-                sinbul.siteSearch(
-                    driver, chatId, searchDate['modDate'])
-            index += 1
+        for index in range(len(sinbulList)):
+            dateList = sinbulList[index]['date']
+            for date in dateList:
+                mainID = sinbulList[index]['id']
+                searchDate = changeDateType(date)
+                if (today <= searchDate['dateType']):
+                    sinbul.connectWebsite(driver)
+                    sinbul.siteSearch(driver, mainID, searchDate['modDate'])
 
-        # sleepRandomTimeVal = 0
-        # if not samrakDate:
-        #     sleepRandomTimeVal += 0.5
-        # if not hwarangDate:
-        #     sleepRandomTimeVal += 0.5
-        # if not sinbulDate:
-        #     sleepRandomTimeVal += 0.5
-        # if not jinhaDate:
-        #     sleepRandomTimeVal += 0.5
-        # sleepRandomTime = random.uniform(0, sleepRandomTimeVal)
-        # # 랜덤으로 대기 후 실행
-        # time.sleep(sleepRandomTime)
-
-        endTime = time.time()
-        measureTime = endTime - startTime
+        # endTime = time.time()
+        # measureTime = endTime - startTime
 
         # 시간 측정
         # print("시간")
