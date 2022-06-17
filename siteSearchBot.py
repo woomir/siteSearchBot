@@ -35,6 +35,12 @@ try:
     webdriver_options.add_argument('lang=ko_KR')
     webdriver_options.add_argument('window-size=1920x1080')
     webdriver_options.add_argument('disable-gpu')
+    webdriver_options.add_argument('--incognito')
+    webdriver_options.add_argument('--no-sandbox')
+    webdriver_options.add_argument('--disable-setuid-sandbox')
+    webdriver_options.add_argument('--disable-dev-shm-usage')
+
+
 
     webdriver_options.add_argument(
         'user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36')
