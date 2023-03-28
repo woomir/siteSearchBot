@@ -1,12 +1,11 @@
 import telegram
-import asyncio
 
 with open("./token.txt") as f:
     lines = f.readlines()
     token = lines[0].strip()
 
 
-def telegramSendMessage(chatId: str, campName: str, date: str, areaName="none", term='none'):
+async def telegramSendMessage(chatId: str, campName: str, date: str, areaName="none", term='none'):
     bot = telegram.Bot(token=token)
     if areaName == "none" and term == "none":
         telegramMessageText = campName + ': ' + date + ' ' + ' 예약 가능'
@@ -14,7 +13,7 @@ def telegramSendMessage(chatId: str, campName: str, date: str, areaName="none", 
         telegramMessageText = campName + ': ' + date + ' ' + term + '박 예약 가능'
     elif areaName != "none" and term == "none":
         telegramMessageText = campName + ': ' + date + ' ' + areaName + ' 예약 가능'
-    bot.sendMessage(chat_id=str(chatId), text=telegramMessageText)
+    await bot.sendMessage(chat_id=str(chatId), text=telegramMessageText)
 
 
 async def telegramSimpleMessage(chatId: str, text: str):
