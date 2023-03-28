@@ -3,3 +3,6 @@ token.txt
 main.png
 menu.png
 test.png
+Brewfile
+.DS_Store
+awspwd_telegramserver.pem
