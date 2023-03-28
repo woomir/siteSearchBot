@@ -15,6 +15,7 @@ import random
 import datetime
 import telegramCustomFunc as teleFunc
 import platform
+import asyncio
 
 
 try:
@@ -24,14 +25,16 @@ try:
     pathChromedriver = ''
 
     if systemOS == "Darwin":
-        pathChromedriver = '/Users/WMHY/Downloads/chromedriver'
+        # pathChromedriver = '/Users/WMHY/Downloads/chromedriver'
+        pathChromedriver = '/Users/home/coding/chromedriver' 
+        # 맥북에서 테스트 할 때 사용
     elif systemOS == "Windows":
         pathChromedriver = ''
     elif systemOS == "Linux":
         pathChromedriver = '/home/ubuntu/chromedriver'
 
     webdriver_options = webdriver.ChromeOptions()
-    webdriver_options .add_argument('--headless')
+    # webdriver_options .add_argument('--headless')
     webdriver_options.add_argument('lang=ko_KR')
     webdriver_options.add_argument('window-size=1920x1080')
     webdriver_options.add_argument('disable-gpu')
@@ -116,6 +119,7 @@ try:
         sinbulList = []
 
         session = boto3.session.Session(profile_name='siteSearch')
+
         dynamodb = session.resource('dynamodb')  # bucket 목록
         table = dynamodb.Table('siteSearchBot_campInfo')
 
@@ -191,6 +195,6 @@ try:
         # print(measureTime)
 
 except Exception as e:
-    teleFunc.telegramSimpleMessage('1003456250', '프로그램 정지')
+    asyncio.run(teleFunc.telegramSimpleMessage('1003456250', '프로그램 정지'))
     print(datetime.datetime.now(),"===================================")
     print(e)

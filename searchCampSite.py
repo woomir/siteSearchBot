@@ -7,9 +7,9 @@ import random
 import datetime
 from telegramCustomFunc import telegramSendMessage
 import platform
-import daejeo
 import samrak
 import jinha
+import asyncio
 
 
 # 사용자 컴퓨터 OS 확인 후 설정값 반환

@@ -9,7 +9,7 @@ from telegramCustomFunc import telegramSendMessage
 import platform
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.alert import Alert
-
+import asyncio
 
 def connectWebsite(driver):
 
@@ -80,8 +80,8 @@ def siteSearch(driver, chatId, date):
                     for siteDetail in activeRealSite:
                         campName = '신불산(' + \
                             siteDetail[0] + ') ' + siteDetail[1]
-                        telegramSendMessage(
-                            str(chatId), campName, date, 'none', 'none')
+                        asyncio.run(telegramSendMessage(
+                            str(chatId), campName, date, 'none', 'none'))
         except:
             # print("input click failure")
             return False

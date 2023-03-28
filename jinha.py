@@ -3,6 +3,8 @@ import time
 from telegramCustomFunc import telegramSendMessage
 import datetime
 from dateutil.relativedelta import relativedelta
+import asyncio
+from selenium.webdriver.common.by import By
 
 
 today = datetime.date.today()
@@ -37,7 +39,8 @@ def siteSearch(calDate, driver, dbDateList):
     if siteFind:
         for area in dataValList:
             xpath = "//button[@data-val='" + area + "']"
-            driver.find_element_by_xpath(xpath).click()
+            # driver.find_element_by_xpath(xpath).click()
+            driver.find_element(By.XPATH, xpath).click()
             time.sleep(0.1)
             html = driver.page_source
             jinhaSoup = BeautifulSoup(html, 'html.parser')
@@ -54,7 +57,7 @@ def siteMatching(avalMonth, searchDateRealList, dbList):
             for dbListElement in dbList:
                 for c in dbListElement['date']:
                     if avalDay['date'][2:].replace('-','') == c:
-                        telegramSendMessage(dbListElement['id'],'울주해양레포츠센터',avalDay['date'], avalDay['siteNum'])
+                        asyncio.run(telegramSendMessage(dbListElement['id'],'울주해양레포츠센터',avalDay['date'], avalDay['siteNum']))
 
 def mainSearch(driver, searchDateRealList, dbList):
     avalThisMonth = []

@@ -7,6 +7,7 @@ import random
 import datetime
 from telegramCustomFunc import telegramSendMessage
 import platform
+import asyncio
 
 
 def connectWebsite(driver, date, term):
@@ -25,4 +26,4 @@ def siteSearch(driver, campName, chatId, date, term):
         if "area_c" not in title["class"]:
             count += 1
     if count > 0:
-        telegramSendMessage(chatId, campName, date, 'none', term)
+        asyncio.run(telegramSendMessage(chatId, campName, date, 'none', term))
