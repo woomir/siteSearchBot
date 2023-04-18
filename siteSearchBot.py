@@ -32,7 +32,7 @@ try:
         pathChromedriver = '/home/ubuntu/chromedriver'
 
     webdriver_options = webdriver.ChromeOptions()
-    webdriver_options .add_argument('--headless')
+    # webdriver_options .add_argument('--headless')
     webdriver_options.add_argument('lang=ko_KR')
     webdriver_options.add_argument('window-size=1920x1080')
     webdriver_options.add_argument('disable-gpu')
@@ -150,32 +150,31 @@ try:
         jinha.mainSearch(driver, jinhaSearchDateRealList, jinhaList)
 
         # 삼락캠핑장 검색
-        index = 0
-        for date in samrakDate:
-            searchDate = changeDateType(date)
+        for index in range(len(samrakList)):
+            dateList = samrakList[index]['date']
             oneMonthAfterDate = today + datetime.timedelta(days=30)
-            if (today <= searchDate['dateType'] and oneMonthAfterDate >= searchDate['dateType']):
-                # term = samrakTerm[index]
-                term = 1
-                chatId = samrakChatId[index]
-                samrak.connectWebsite(driver, searchDate['modDate'], term)
-                samrak.siteSearch(
-                    driver, campName[1], chatId, searchDate['modDate'], term)
-            index += 1
+            for date in dateList:
+                searchDate = changeDateType(date)
+                chatId = samrakList[index]['id']
+                if (today <= searchDate['dateType'] and oneMonthAfterDate >= searchDate['dateType']):
+                    # term = samrakTerm[index]
+                    term = '1'
+                    samrak.connectWebsite(driver, searchDate['modDate'], term)
+                    samrak.siteSearch(
+                        driver, campName[1], chatId, searchDate['modDate'], term)
 
         # 화랑마을(육부촌) 검색
-        index = 0
-        for date in hwarangDate:
-            searchDate = changeDateType(date)
-            if (today <= searchDate['dateType']):
-                # term = hwarangTerm[index]
-                term = 1
-                chatId = hwarangChatId[index]
-                hwarang.connectWebsite(
-                    driver, searchDate['startDateYear'], searchDate['startDateMonth'], searchDate['startDateDay'])
-                hwarang.siteSearch(
-                    driver, campName[2], chatId, searchDate['modDate'], term)
-            index += 1
+        for index in range(len(hwarangList)):
+            dateList = hwarangList[index]['date']
+            for date in dateList:
+                chatId = hwarangList[index]['id']
+                searchDate = changeDateType(date)
+                if (today <= searchDate['dateType']):
+                    term = 1
+                    hwarang.connectWebsite(
+                        driver, searchDate['startDateYear'], searchDate['startDateMonth'], searchDate['startDateDay'])
+                    hwarang.siteSearch(
+                        driver, campName[2], chatId, searchDate['modDate'], term)
 
         # 신불산 검색
         for index in range(len(sinbulList)):
