@@ -184,7 +184,7 @@ try:
                 searchDate = changeDateType(date)
                 if (today <= searchDate['dateType']):
                     sinbul.connectWebsite(driver)
-                    sinbul.siteSearch(driver, mainID, searchDate['modDate'])
+                    sinbul.siteSearch(driver, mainID, searchDate['modDate'], searchDate['dateType'].month, today)
 
         # endTime = time.time()
         # measureTime = endTime - startTime

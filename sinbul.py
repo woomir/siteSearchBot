@@ -1,15 +1,11 @@
-import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
 import time
-import telegram
-import random
-import datetime
 from telegramCustomFunc import telegramSendMessage
-import platform
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.alert import Alert
 import asyncio
+from selenium.webdriver.common.by import By
 
 def connectWebsite(driver):
 
@@ -19,24 +15,22 @@ def connectWebsite(driver):
     time.sleep(1)
 
 
-def siteSearch(driver, chatId, date):
+def siteSearch(driver, chatId, date, numDate, today):
     errorCheck = 0
 
     try:
+        if today.month != numDate:
+            xpath = "//*[@id='calendar']/div[1]/div[2]"
+            driver.find_element(By.XPATH, xpath).click()
         xpath = "//td[@data-date='" + date + "']"
-        # xpath = "//td[@data-date='2021-06-24']"
-        driver.find_element_by_xpath(xpath).click()
+        driver.find_element(By.XPATH, xpath).click()
         time.sleep(1)
-        # print("date click")
-    except:
-        # driver.save_screenshot("test.png")
-        # print("date click failure")
+    except Exception as e:
+        print(e)
         return False
     try:
         Alert(driver).accept()
-        # print("Alert click")
     except:
-        # print("Alert click failure")
         errorCheck = 1
 
     time.sleep(1)
@@ -44,16 +38,17 @@ def siteSearch(driver, chatId, date):
     if errorCheck == 1:
         try:
             xpath = "//*[@id='divAjaxTable']/div/label"
-            driver.find_element_by_xpath(xpath).click()
+            driver.find_element(By.XPATH, xpath).click()
+
             time.sleep(2)
-            # print("label click")
 
             for i in range(1, 4):
                 activeSiteInfo = []
                 activeSiteDetail = []
                 activeRealSite = []
                 xpath = "//*[@id='divAjaxTable']/input[" + str(i) + "]"
-                driver.find_element_by_xpath(xpath).click()
+                driver.find_element(By.XPATH, xpath).click()
+
                 time.sleep(2)
                 # print("input click")
 
