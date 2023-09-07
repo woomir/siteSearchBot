@@ -52,12 +52,20 @@ def siteSearch(calDate, driver, dbDateList):
     return avalList
 
 def siteMatching(avalMonth, searchDateRealList, dbList):
+    
     for avalDay in avalMonth:
+        siteNumSelect = avalDay['siteNum'][1]
         if avalDay['date'] in searchDateRealList:
             for dbListElement in dbList:
+                count = 0
                 for c in dbListElement['date']:
                     if avalDay['date'][2:].replace('-','') == c:
-                        asyncio.run(telegramSendMessage(dbListElement['id'],'울주해양레포츠센터',avalDay['date'], avalDay['siteNum']))
+                        if dbListElement['onlyAsite'][count] == 'y':
+                            if siteNumSelect == 'A':
+                                asyncio.run(telegramSendMessage(dbListElement['id'],'울주해양레포츠센터',avalDay['date'], avalDay['siteNum']))
+                        else:
+                            asyncio.run(telegramSendMessage(dbListElement['id'],'울주해양레포츠센터',avalDay['date'], avalDay['siteNum']))
+                    count =+ 1        
 
 def mainSearch(driver, searchDateRealList, dbList):
     avalThisMonth = []

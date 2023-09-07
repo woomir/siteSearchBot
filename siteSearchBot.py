@@ -75,11 +75,25 @@ try:
         group = []
         for a in db:
             dateT = []
+            onlyAsite = a.get('onlyAsite', '')
+            onlyAsiteOne = []
             if a.get('selectedDate'):
                 for i in range(0,len(a['selectedDate'])):
                     dateT.append(a['selectedDate'][i]['startDate'])
-                group.append({'id':a['chat_id'],'date':dateT})
+                    onlyAsiteOne.append(onlyAsite[i])
+                group.append({'id':a['chat_id'],'date':dateT,'onlyAsite':onlyAsite})
         return sorted(group, key = lambda item: item['id'])
+    
+    def sinbullistSearch(db):
+            group = []
+            for a in db:
+                dateT = []
+                if a.get('selectedDate'):
+                    for i in range(0,len(a['selectedDate'])):
+                        dateT.append(a['selectedDate'][i]['startDate'])
+                    group.append({'id':a['chat_id'],'date':dateT})
+            return sorted(group, key = lambda item: item['id'])
+
 
     def changeDateType(date):
         startDateYear = date[0:2]
@@ -138,7 +152,7 @@ try:
             jinhaList = listSearch(jinhaDb)
             hwarangList = listSearch(hwarangDb)
             samrakList = listSearch(samrakDb)
-            sinbulList = listSearch(sinbulDb)
+            sinbulList = sinbullistSearch(sinbulDb)
 
         # 진하캠핑장 검색
         jinhaSearchDateRealList = []
