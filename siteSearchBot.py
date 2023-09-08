@@ -3,7 +3,8 @@ from botocore.exceptions import ClientError
 from pprint import pprint
 from boto3.dynamodb.conditions import Key, Attr
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
+# from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 import jinha
 import samrak
@@ -31,24 +32,36 @@ try:
     elif systemOS == "Linux":
         pathChromedriver = '/home/ubuntu/chromedriver'
 
-    webdriver_options = webdriver.ChromeOptions()
-    webdriver_options .add_argument('--headless')
-    webdriver_options.add_argument('lang=ko_KR')
-    webdriver_options.add_argument('window-size=1920x1080')
-    webdriver_options.add_argument('disable-gpu')
-    webdriver_options.add_argument('--incognito')
-    webdriver_options.add_argument('--no-sandbox')
-    webdriver_options.add_argument('--disable-setuid-sandbox')
-    webdriver_options.add_argument('--disable-dev-shm-usage')
+    # webdriver_options = webdriver.ChromeOptions()
+    options = Options()
+    options .add_argument('--headless')
+    options.add_argument('lang=ko_KR')
+    options.add_argument('window-size=1920x1080')
+    options.add_argument('disable-gpu')
+    options.add_argument('--incognito')
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-setuid-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+
+
+    # webdriver_options .add_argument('--headless')
+    # webdriver_options.add_argument('lang=ko_KR')
+    # webdriver_options.add_argument('window-size=1920x1080')
+    # webdriver_options.add_argument('disable-gpu')
+    # webdriver_options.add_argument('--incognito')
+    # webdriver_options.add_argument('--no-sandbox')
+    # webdriver_options.add_argument('--disable-setuid-sandbox')
+    # webdriver_options.add_argument('--disable-dev-shm-usage')
 
 
 
-    webdriver_options.add_argument(
+    options.add_argument(
         'user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36')
 
     # driver = webdriver.Chrome(pathChromedriver, options=webdriver_options)
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=webdriver_options)
-
+    # driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=webdriver_options)
+    driver = webdriver.Chrome(options=options)
+    driver.get("https://www.google.com/")
 
     def dbScan(campName, dynamodb=None):
         try:
