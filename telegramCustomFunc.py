@@ -13,9 +13,9 @@ async def telegramSendMessage(chatId: str, campName: str, date: str, areaName="n
         telegramMessageText = campName + ': ' + date + ' ' + term + '박 예약 가능'
     elif areaName != "none" and term == "none":
         telegramMessageText = campName + ': ' + date + ' ' + areaName + ' 예약 가능'
-    await bot.sendMessage(chat_id=str(chatId), text=telegramMessageText)
+    bot.sendMessage(chat_id=str(chatId), text=telegramMessageText)
 
 
 async def telegramSimpleMessage(chatId: str, text: str):
     bot = telegram.Bot(token=token)
-    await bot.sendMessage(chat_id=chatId, text=text)
+    bot.sendMessage(chat_id=chatId, text=text)
