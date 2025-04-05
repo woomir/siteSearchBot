@@ -6,10 +6,23 @@ from dateutil.relativedelta import relativedelta
 import asyncio
 from selenium.webdriver.common.by import By
 import logging
+import sys
 
 
 today = datetime.date.today()
 nextMonth = today + relativedelta(months=1)
+
+# 콘솔 핸들러 설정 (WARNING 레벨 이상으로 변경)
+stream_handler = logging.StreamHandler(sys.stdout)
+stream_handler.setLevel(logging.WARNING) # INFO -> WARNING 변경
+stream_handler.setFormatter(formatter)
+logger.addHandler(stream_handler)
+
+# 파일 핸들러 설정 (ERROR 레벨 이상 - 유지)
+file_handler = logging.FileHandler('siteSearchBot.log')
+file_handler.setLevel(logging.ERROR)
+file_handler.setFormatter(formatter)
+logger.addHandler(file_handler)
 
 def changeDateType(date):
     startDateYear = date[0:2]
