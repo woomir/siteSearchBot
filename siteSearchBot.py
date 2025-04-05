@@ -43,7 +43,7 @@ logger.addHandler(file_handler)
 def setup_webdriver() -> Optional[webdriver.Chrome]:
     try:
         options = Options()
-        # options.add_argument('--headless') # Keep it commented out for now if needed
+        options.add_argument('--headless') # 주석 제거하여 헤드리스 모드 활성화
         options.add_argument('lang=ko_KR')
         options.add_argument('window-size=1920x1080')
         options.add_argument('disable-gpu')
