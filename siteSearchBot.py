@@ -28,13 +28,13 @@ logger.setLevel(logging.INFO) # 로거의 기본 레벨은 INFO로 설정 (콘�
 # 포매터 설정
 formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
 
-# 콘솔 핸들러 설정 (INFO 레벨 이상)
+# 콘솔 핸들러 설정 (WARNING 레벨 이상으로 변경)
 stream_handler = logging.StreamHandler(sys.stdout)
-stream_handler.setLevel(logging.INFO)
+stream_handler.setLevel(logging.WARNING) # INFO -> WARNING 변경
 stream_handler.setFormatter(formatter)
 logger.addHandler(stream_handler)
 
-# 파일 핸들러 설정 (ERROR 레벨 이상)
+# 파일 핸들러 설정 (ERROR 레벨 이상 - 유지)
 file_handler = logging.FileHandler('siteSearchBot.log')
 file_handler.setLevel(logging.ERROR) # 파일에는 ERROR 레벨 이상만 기록
 file_handler.setFormatter(formatter)
